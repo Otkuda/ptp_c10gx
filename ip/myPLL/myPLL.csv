@@ -1,0 +1,18 @@
+# system info myPLL on 2025.05.19.10:16:23
+system_info:
+name,value
+DEVICE,10CX220YF780E5G
+DEVICE_FAMILY,Cyclone 10 GX
+GENERATION_ID,0
+#
+#
+# Files generated for myPLL on 2025.05.19.10:16:23
+files:
+filepath,kind,attributes,module,is_top
+sim/myPLL.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,myPLL,true
+altera_iopll_2000/sim/myPLL_altera_iopll_2000_nw63ofi.vo,VERILOG,,myPLL_altera_iopll_2000_nw63ofi,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+myPLL.iopll_0,myPLL_altera_iopll_2000_nw63ofi

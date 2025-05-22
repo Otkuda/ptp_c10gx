@@ -1,0 +1,53 @@
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_TOOL_NAME "QsysPrimePro"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_TOOL_VERSION "24.3"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_TOP_LEVEL_COMPONENT_NAME "fifo"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name PRE_COMPILED_MODULE "ON"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name OCS_IP_FILE [file join $::quartus(qip_path) "../dcfifo_ptp.ip"]
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name OCS_IP_TYPE "fifo"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name OCS_IP_VERSION "19.3.0"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name OCS_IP_HASH "qm54f6y"
+set_global_assignment -library "dcfifo_ptp" -name SOPCINFO_FILE [file join $::quartus(qip_path) "dcfifo_ptp.sopcinfo"]
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name SLD_INFO "QSYS_NAME dcfifo_ptp HAS_SOPCINFO 1 GENERATION_ID 0"
+set_global_assignment -library "dcfifo_ptp" -name MISC_FILE [file join $::quartus(qip_path) "dcfifo_ptp.cmp"]
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_TARGETED_DEVICE_FAMILY "Cyclone 10 GX"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_GENERATED_DEVICE_FAMILY "{Cyclone 10 GX}"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "dcfifo_ptp" -name MISC_FILE [file join $::quartus(qip_path) "../dcfifo_ptp.ip"]
+
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_NAME "ZGNmaWZvX3B0cF9maWZvXzE5MzBfcW01NGY2eQ=="
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_DISPLAY_NAME "RklGTyBJbnRlbCBGUEdBIElQ"
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_VERSION "MTkuMy4w"
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_DESCRIPTION "RklGTyBGUEdBIElQIGNhbiBiZSBwYXJhbWV0ZXJpc2VkIGFzIHNpbmdsZS1jbG9jayBGSUZPIChTQ0ZJRk8pIGFuZCBkdWFsLWNsb2NrIEZJRk8gKERDRklGTykgZnVuY3Rpb25zLgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVGhlIEZJRk8gZnVuY3Rpb25zIGFyZSBtb3N0bHkgYXBwbGllZCBpbiBkYXRhIGJ1ZmZlcmluZyBhcHBsaWNhdGlvbnMgdGhhdCBjb21wbHkgd2l0aCB0aGUgZmlyc3QtaW4tZmlyc3Qtb3V0IGRhdGEgZmxvdyBpbiBzeW5jaHJvbm91cyBvciBhc3luY2hyb25vdXMgY2xvY2sgZG9tYWlucy4="
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_GROUP "QmFzaWMgRnVuY3Rpb25zL09uIENoaXAgTWVtb3J5"
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzI0MS8="
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzMwMS8="
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzQyMy8="
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzE4MS8="
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzUyMi8="
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4Mzc3MS8="
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzUyMi8="
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzgyOC8="
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzI2NC8="
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_COMPONENT_NAME "ZGNmaWZvX3B0cA=="
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "dcfifo_ptp" -library "dcfifo_ptp" -name IP_COMPONENT_VERSION "MS4w"
+
+
+set_global_assignment -library "fifo_1930" -name VERILOG_FILE [file join $::quartus(qip_path) "fifo_1930/synth/dcfifo_ptp_fifo_1930_qm54f6y.v"]
+set_instance_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name SDC_ENTITY_FILE [file join $::quartus(qip_path) "fifo_1930/synth/dcfifo_ptp_fifo_1930_qm54f6y.sdc"] -no_sdc_promotion  -no_auto_inst_discovery 
+set_global_assignment -library "dcfifo_ptp" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/dcfifo_ptp.v"]
+
+
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_TOOL_NAME "fifo"
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_TOOL_VERSION "19.3.0"
+set_global_assignment -entity "dcfifo_ptp_fifo_1930_qm54f6y" -library "fifo_1930" -name IP_TOOL_ENV "QsysPrimePro"
+

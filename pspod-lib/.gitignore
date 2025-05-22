@@ -1,0 +1,23 @@
+[_@]*
+
+# ignore compilation output of ModelSim
+*.mti
+*.dat
+*.dbs
+*.psm
+*.bak
+*.cmp
+*.jpg
+*.html
+*.bsf
+*.mpf
+*.ini
+
+# ignore simulation output of ModelSim
+wlf*
+*.wlf
+*.vstf
+transcript*
+vsim.dbg
+*.opt
+work

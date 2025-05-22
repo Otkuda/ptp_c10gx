@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="altera_xcvr_reset_control_1911/sim/altera_xcvr_functions.sv"
+   type="SYSTEM_VERILOG"
+   library="altera_xcvr_reset_control_1911" />
+ <file
+   path="altera_xcvr_reset_control_1911/sim/mentor/altera_xcvr_functions.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="altera_xcvr_reset_control_1911"
+   simulator="modelsim" />
+ <file
+   path="altera_xcvr_reset_control_1911/sim/alt_xcvr_resync.sv"
+   type="SYSTEM_VERILOG"
+   library="altera_xcvr_reset_control_1911" />
+ <file
+   path="altera_xcvr_reset_control_1911/sim/mentor/alt_xcvr_resync.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="altera_xcvr_reset_control_1911"
+   simulator="modelsim" />
+ <file
+   path="altera_xcvr_reset_control_1911/sim/altera_xcvr_reset_control.sv"
+   type="SYSTEM_VERILOG"
+   library="altera_xcvr_reset_control_1911" />
+ <file
+   path="altera_xcvr_reset_control_1911/sim/alt_xcvr_reset_counter.sv"
+   type="SYSTEM_VERILOG"
+   library="altera_xcvr_reset_control_1911" />
+ <file
+   path="altera_xcvr_reset_control_1911/sim/mentor/altera_xcvr_reset_control.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="altera_xcvr_reset_control_1911"
+   simulator="modelsim" />
+ <file
+   path="altera_xcvr_reset_control_1911/sim/mentor/alt_xcvr_reset_counter.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="altera_xcvr_reset_control_1911"
+   simulator="modelsim" />
+ <file
+   path="altera_xcvr_reset_control_1911/sim/plain_files.txt"
+   type="OTHER"
+   library="altera_xcvr_reset_control_1911" />
+ <file
+   path="altera_xcvr_reset_control_1911/sim/mentor_files.txt"
+   type="OTHER"
+   library="altera_xcvr_reset_control_1911" />
+ <file
+   path="altera_xcvr_reset_control_1911/sim/cadence_files.txt"
+   type="OTHER"
+   library="altera_xcvr_reset_control_1911" />
+ <file
+   path="altera_xcvr_reset_control_1911/sim/synopsys_files.txt"
+   type="OTHER"
+   library="altera_xcvr_reset_control_1911" />
+ <file
+   path="altera_xcvr_reset_control_1911/sim/aldec_files.txt"
+   type="OTHER"
+   library="altera_xcvr_reset_control_1911" />
+ <file
+   path="sim/eth_rst.v"
+   type="VERILOG"
+   library="eth_rst"
+   hasInlineConfiguration="true" />
+ <topLevel name="eth_rst.eth_rst" />
+ <deviceFamily name="cyclone10gx" />
+ <device name="10CX220YF780E5G" />
+</simPackage>

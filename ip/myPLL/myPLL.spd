@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="altera_iopll_2000/sim/myPLL_altera_iopll_2000_nw63ofi.vo"
+   type="VERILOG"
+   library="altera_iopll_2000" />
+ <file
+   path="sim/myPLL.v"
+   type="VERILOG"
+   library="myPLL"
+   hasInlineConfiguration="true" />
+ <topLevel name="myPLL.myPLL" />
+ <deviceFamily name="cyclone10gx" />
+ <device name="10CX220YF780E5G" />
+</simPackage>

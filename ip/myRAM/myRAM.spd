@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="intel_mce_101/sim/sim_dummy.v"
+   type="VERILOG"
+   library="intel_mce_101" />
+ <file
+   path="ram_1port_2011/sim/myRAM_ram_1port_intel_mce_2011_f6dnnqq.v"
+   type="VERILOG"
+   library="ram_1port_2011"
+   hasInlineConfiguration="true" />
+ <file
+   path="ram_1port_2011/sim/myRAM_ram_1port_2011_wsr2yiq.v"
+   type="VERILOG"
+   library="ram_1port_2011" />
+ <file
+   path="sim/myRAM.v"
+   type="VERILOG"
+   library="myRAM"
+   hasInlineConfiguration="true" />
+ <topLevel name="myRAM.myRAM" />
+ <deviceFamily name="cyclone10gx" />
+ <device name="10CX220YF780E5G" />
+</simPackage>

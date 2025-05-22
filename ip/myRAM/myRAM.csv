@@ -1,0 +1,22 @@
+# system info myRAM on 2025.05.16.13:36:10
+system_info:
+name,value
+DEVICE,10CX220YF780E5G
+DEVICE_FAMILY,Cyclone 10 GX
+GENERATION_ID,0
+#
+#
+# Files generated for myRAM on 2025.05.16.13:36:10
+files:
+filepath,kind,attributes,module,is_top
+sim/myRAM.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,myRAM,true
+ram_1port_2011/sim/myRAM_ram_1port_2011_wsr2yiq.v,VERILOG,,myRAM_ram_1port_2011_wsr2yiq,false
+ram_1port_2011/sim/myRAM_ram_1port_intel_mce_2011_f6dnnqq.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,myRAM_ram_1port_intel_mce_2011_f6dnnqq,false
+intel_mce_101/sim/sim_dummy.v,VERILOG,,sim_dummy,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+myRAM.ram_1port_0,myRAM_ram_1port_2011_wsr2yiq
+myRAM.ram_1port_0.intel_mce_inst,myRAM_ram_1port_intel_mce_2011_f6dnnqq
+myRAM.ram_1port_0.intel_mce_inst.intel_mce_inst,sim_dummy

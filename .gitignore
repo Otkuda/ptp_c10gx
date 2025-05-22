@@ -1,0 +1,14 @@
+.qsys_edit
+dni
+output_files
+qdb
+tmp-clearbox
+work
+*.history
+*.wlf
+*.bak
+*.txt
+*.json
+*.mif
+*.elf
+*.bin

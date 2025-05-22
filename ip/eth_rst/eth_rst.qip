@@ -1,0 +1,47 @@
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_TOOL_NAME "QsysPrimePro"
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_TOOL_VERSION "22.4"
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_TOP_LEVEL_COMPONENT_NAME "altera_xcvr_reset_control"
+set_global_assignment -library "eth_rst" -name SOPCINFO_FILE [file join $::quartus(qip_path) "eth_rst.sopcinfo"]
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name SLD_INFO "QSYS_NAME eth_rst HAS_SOPCINFO 1 GENERATION_ID 0"
+set_global_assignment -library "eth_rst" -name MISC_FILE [file join $::quartus(qip_path) "eth_rst.cmp"]
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_TARGETED_DEVICE_FAMILY "Cyclone 10 GX"
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_GENERATED_DEVICE_FAMILY "{Cyclone 10 GX}"
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "eth_rst" -name MISC_FILE [file join $::quartus(qip_path) "../eth_rst.ip"]
+
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_NAME "YWx0ZXJhX3hjdnJfcmVzZXRfY29udHJvbA=="
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_DISPLAY_NAME "VHJhbnNjZWl2ZXIgUEhZIFJlc2V0IENvbnRyb2xsZXIgSW50ZWwgRlBHQSBJUA=="
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_VERSION "MTkuMS4x"
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_GROUP "SW50ZXJmYWNlIFByb3RvY29scy9UcmFuc2NlaXZlciBQSFk="
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cDovL3d3dy5hbHRlcmEuY29tL2xpdGVyYXR1cmUvaGIvYXJyaWEtMTAvdWdfYXJyaWExMF94Y3ZyX3BoeS5wZGY="
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly9kb2N1bWVudGF0aW9uLmFsdGVyYS5jb20vIy9saW5rL25pazEzOTg3MDcyMzA0NzIvbmlrMTM5ODcwNjk1MTM2OA=="
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly9kb2N1bWVudGF0aW9uLmFsdGVyYS5jb20vIy9saW5rL2hjbzE0MjE2OTgwNDIwODcvaGNvMTQyMTY5NzY4OTMwMA=="
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cDovL3d3dy5hbHRlcmEuY29tL2xpdGVyYXR1cmUvaGIvY3ljbG9uZS0xMC91Z19jeWNsb25lMTBfeGN2cl9waHkucGRm"
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuYWx0ZXJhLmNvbS9kb2N1bWVudGF0aW9uL2hraTE0ODY1MDc2MDA2MzYuaHRtbCN4Z2oxNDg2NTA2OTE4NzA2"
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cDovL3d3dy5hbHRlcmEuY29tL2xpdGVyYXR1cmUvdWcveGN2cl91c2VyX2d1aWRlLnBkZg=="
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_COMPONENT_NAME "ZXRoX3JzdA=="
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "eth_rst" -library "eth_rst" -name IP_COMPONENT_VERSION "MS4w"
+
+
+set_global_assignment -library "altera_xcvr_reset_control_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "altera_xcvr_reset_control_1911/synth/altera_xcvr_functions.sv"]
+set_global_assignment -library "altera_xcvr_reset_control_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "altera_xcvr_reset_control_1911/synth/alt_xcvr_resync.sv"]
+set_global_assignment -library "altera_xcvr_reset_control_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "altera_xcvr_reset_control_1911/synth/altera_xcvr_reset_control.sv"]
+set_global_assignment -library "altera_xcvr_reset_control_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "altera_xcvr_reset_control_1911/synth/alt_xcvr_reset_counter.sv"]
+set_global_assignment -library "altera_xcvr_reset_control_1911" -name SOURCE_FILE [file join $::quartus(qip_path) "altera_xcvr_reset_control_1911/synth/plain_files.txt"]
+set_global_assignment -library "eth_rst" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/eth_rst.v"]
+
+
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_TOOL_NAME "altera_xcvr_reset_control"
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_TOOL_VERSION "19.1.1"
+set_global_assignment -entity "altera_xcvr_reset_control" -library "altera_xcvr_reset_control_1911" -name IP_TOOL_ENV "QsysPrimePro"
+

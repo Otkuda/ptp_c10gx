@@ -1,0 +1,30 @@
+# system info eth_rst on 2024.11.22.18:56:07
+system_info:
+name,value
+DEVICE,10CX220YF780E5G
+DEVICE_FAMILY,Cyclone 10 GX
+GENERATION_ID,0
+#
+#
+# Files generated for eth_rst on 2024.11.22.18:56:07
+files:
+filepath,kind,attributes,module,is_top
+sim/eth_rst.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,eth_rst,true
+altera_xcvr_reset_control_1911/sim/altera_xcvr_functions.sv,SYSTEM_VERILOG,,altera_xcvr_reset_control,false
+altera_xcvr_reset_control_1911/sim/mentor/altera_xcvr_functions.sv,SYSTEM_VERILOG_ENCRYPT,MENTOR_SPECIFIC,altera_xcvr_reset_control,false
+altera_xcvr_reset_control_1911/sim/alt_xcvr_resync.sv,SYSTEM_VERILOG,,altera_xcvr_reset_control,false
+altera_xcvr_reset_control_1911/sim/mentor/alt_xcvr_resync.sv,SYSTEM_VERILOG_ENCRYPT,MENTOR_SPECIFIC,altera_xcvr_reset_control,false
+altera_xcvr_reset_control_1911/sim/altera_xcvr_reset_control.sv,SYSTEM_VERILOG,,altera_xcvr_reset_control,false
+altera_xcvr_reset_control_1911/sim/alt_xcvr_reset_counter.sv,SYSTEM_VERILOG,,altera_xcvr_reset_control,false
+altera_xcvr_reset_control_1911/sim/mentor/altera_xcvr_reset_control.sv,SYSTEM_VERILOG_ENCRYPT,MENTOR_SPECIFIC,altera_xcvr_reset_control,false
+altera_xcvr_reset_control_1911/sim/mentor/alt_xcvr_reset_counter.sv,SYSTEM_VERILOG_ENCRYPT,MENTOR_SPECIFIC,altera_xcvr_reset_control,false
+altera_xcvr_reset_control_1911/sim/plain_files.txt,OTHER,,altera_xcvr_reset_control,false
+altera_xcvr_reset_control_1911/sim/mentor_files.txt,OTHER,,altera_xcvr_reset_control,false
+altera_xcvr_reset_control_1911/sim/cadence_files.txt,OTHER,,altera_xcvr_reset_control,false
+altera_xcvr_reset_control_1911/sim/synopsys_files.txt,OTHER,,altera_xcvr_reset_control,false
+altera_xcvr_reset_control_1911/sim/aldec_files.txt,OTHER,,altera_xcvr_reset_control,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+eth_rst.xcvr_reset_control_0,altera_xcvr_reset_control

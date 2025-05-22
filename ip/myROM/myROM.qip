@@ -1,0 +1,51 @@
+set_global_assignment -entity "myROM" -library "myROM" -name IP_TOOL_NAME "QsysPrimePro"
+set_global_assignment -entity "myROM" -library "myROM" -name IP_TOOL_VERSION "24.3"
+set_global_assignment -entity "myROM" -library "myROM" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "myROM" -library "myROM" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
+set_global_assignment -entity "myROM" -library "myROM" -name IP_TOP_LEVEL_COMPONENT_NAME "rom_1port"
+set_global_assignment -entity "myROM" -library "myROM" -name PRE_COMPILED_MODULE "ON"
+set_global_assignment -entity "myROM" -library "myROM" -name OCS_IP_FILE [file join $::quartus(qip_path) "../myROM.ip"]
+set_global_assignment -entity "myROM" -library "myROM" -name OCS_IP_TYPE "rom_1port"
+set_global_assignment -entity "myROM" -library "myROM" -name OCS_IP_VERSION "20.2.1"
+set_global_assignment -entity "myROM" -library "myROM" -name OCS_IP_HASH "ydz5faq"
+set_global_assignment -library "myROM" -name SOPCINFO_FILE [file join $::quartus(qip_path) "myROM.sopcinfo"]
+set_global_assignment -entity "myROM" -library "myROM" -name SLD_INFO "QSYS_NAME myROM HAS_SOPCINFO 1 GENERATION_ID 0"
+set_global_assignment -library "myROM" -name MISC_FILE [file join $::quartus(qip_path) "myROM.cmp"]
+set_global_assignment -entity "myROM" -library "myROM" -name IP_TARGETED_DEVICE_FAMILY "Cyclone 10 GX"
+set_global_assignment -entity "myROM" -library "myROM" -name IP_GENERATED_DEVICE_FAMILY "{Cyclone 10 GX}"
+set_global_assignment -entity "myROM" -library "myROM" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "myROM" -name MISC_FILE [file join $::quartus(qip_path) "../myROM.ip"]
+
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_NAME "bXlST01fcm9tXzFwb3J0XzIwMjFfeWR6NWZhcQ=="
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_DISPLAY_NAME "Uk9NOiAxLVBPUlQgSW50ZWwgRlBHQSBJUA=="
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_VERSION "MjAuMi4x"
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_DESCRIPTION "VGhlIFJPTTogMS1QT1JUIEludGVsIEZQR0EgSVAgYWxsb3dzIHlvdSB0byBpbXBsZW1lbnQgU2luZ2xlLXBvcnQgUk9N"
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_GROUP "QmFzaWMgRnVuY3Rpb25zL09uIENoaXAgTWVtb3J5"
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzgyOC8="
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4Mzc3MS8="
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzE4MS8="
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzMwMS8="
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzI0MC8="
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzQyMy8="
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzI0MS8="
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzExMC8="
+set_global_assignment -entity "myROM" -library "myROM" -name IP_COMPONENT_NAME "bXlST00="
+set_global_assignment -entity "myROM" -library "myROM" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
+set_global_assignment -entity "myROM" -library "myROM" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "myROM" -library "myROM" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "myROM" -library "myROM" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "myROM" -library "myROM" -name IP_COMPONENT_VERSION "MS4w"
+
+
+set_global_assignment -library "rom_1port_2021" -name VERILOG_FILE [file join $::quartus(qip_path) "rom_1port_2021/synth/myROM_rom_1port_2021_ydz5faq.v"]
+set_global_assignment -library "myROM" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/myROM.v"]
+
+
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_TOOL_NAME "rom_1port"
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_TOOL_VERSION "20.2.1"
+set_global_assignment -entity "myROM_rom_1port_2021_ydz5faq" -library "rom_1port_2021" -name IP_TOOL_ENV "QsysPrimePro"
+

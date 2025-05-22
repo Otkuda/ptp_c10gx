@@ -1,0 +1,1860 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>datasheet for tse</title>
+  <style type="text/css">
+body { font-family:arial ;}
+a { text-decoration:underline ; color:#003000 ;}
+a:hover { text-decoration:underline ; color:0030f0 ;}
+td { padding : 5px ;}
+table.topTitle { width:100% ;}
+table.topTitle td.l { text-align:left ; font-weight: bold ; font-size:30px ;}
+table.topTitle td.r { text-align:right ; font-weight: bold ; font-size:16px ;}
+table.blueBar { width : 100% ; border-spacing : 0px ;}
+table.blueBar td { background:#0036ff ; font-size:12px ; color : white ; text-align : left ; font-weight : bold ;}
+table.blueBar td.l { text-align : left ;}
+table.blueBar td.r { text-align : right ;}
+table.items { width:100% ; border-collapse:collapse ;}
+table.items td.label { font-weight:bold ; font-size:16px ; vertical-align:top ;}
+table.items td.mono { font-family:courier ; font-size:12px ; white-space:pre ;}
+div.label { font-weight:bold ; font-size:16px ; vertical-align:top ; text-align:center ;}
+table.grid { border-collapse:collapse ;}
+table.grid td { border:1px solid #bbb ; font-size:12px ;}
+body { font-family:arial ;}
+table.x { font-family:courier ; border-collapse:collapse ; padding:2px ;}
+table.x td { border:1px solid #bbb ;}
+td.tableTitle { font-weight:bold ; text-align:center ;}
+table.grid { border-collapse:collapse ;}
+table.grid td { border:1px solid #bbb ;}
+table.grid td.tableTitle { font-weight:bold ; text-align:center ;}
+table.mmap { border-collapse:collapse ; text-size:11px ; border:1px solid #d8d8d8 ;}
+table.mmap td { border-color:#d8d8d8 ; border-width:1px ; border-style:solid ;}
+table.mmap td.empty { border-style:none ; background-color:#f0f0f0 ;}
+table.mmap td.slavemodule { text-align:left ; font-size:11px ; border-style:solid solid none solid ;}
+table.mmap td.slavem { text-align:right ; font-size:9px ; font-style:italic ; border-style:none solid none solid ;}
+table.mmap td.slaveb { text-align:right ; font-size:9px ; font-style:italic ; border-style:none solid solid solid ;}
+table.mmap td.mastermodule { text-align:center ; font-size:11px ; border-style:solid solid none solid ;}
+table.mmap td.masterlr { text-align:center ; font-size:9px ; font-style:italic ; border-style:none solid solid solid ;}
+table.mmap td.masterl { text-align:center ; font-size:9px ; font-style:italic ; border-style:none none solid solid ;}
+table.mmap td.masterm { text-align:center ; font-size:9px ; font-style:italic ; border-style:none none solid none ;}
+table.mmap td.masterr { text-align:center ; font-size:9px ; font-style:italic ; border-style:none solid solid none ;}
+table.mmap td.addr { font-family:courier ; font-size:9px ; text-align:right ;}
+table.connectionboxes { border-collapse:separate ; border-spacing:0px ; font-family:arial ;}
+table.connectionboxes td.from { border-bottom:1px solid black ; font-size:9px ; font-style:italic ; vertical-align:bottom ; text-align:left ;}
+table.connectionboxes td.to { font-size:9px ; font-style:italic ; vertical-align:top ; text-align:right ;}
+table.connectionboxes td.lefthandwire { border-bottom:1px solid black ; font-size:9px ; font-style:italic ; vertical-align:bottom ; text-align:right ;}
+table.connectionboxes td.righthandwire { border-bottom:1px solid black ; font-size:9px ; font-style:italic ; vertical-align:bottom ; text-align:left ;}
+table.connectionboxes td.righthandlabel { font-size:11px ; vertical-align:bottom ; text-align:left ;}
+table.connectionboxes td.neighbor { padding:3px ; border:1px solid black ; font-size: 11px ; background:#e8e8e8 ; vertical-align:center ; text-align:center ;}
+table.connectionboxes td.main { padding:8px ; border:1px solid black ; font-size: 14px ; font-weight:bold ; background:#ffffff ; vertical-align:center ; text-align:center ;}
+.parametersbox { border:1px solid #d0d0d0 ; display:inline-block ; max-height:160px ; overflow:auto ; width:360px ; font-size:10px ;}
+.flowbox { display:inline-block ;}
+.parametersbox table { font-size:10px ;}
+td.parametername { font-style:italic ;}
+td.parametervalue { font-weight:bold ;}
+div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; border-top:1px solid #707070 ; border-bottom:1px solid #707070 ; padding:20px ; margin:20px ; width:auto ;}</style>
+ </head>
+ <body>
+  <table class="topTitle">
+   <tr>
+    <td class="l">tse</td>
+    <td class="r">
+     <br/>
+     <br/>
+    </td>
+   </tr>
+  </table>
+  <table class="blueBar">
+   <tr>
+    <td class="l">2024.12.11.18:24:22</td>
+    <td class="r">Datasheet</td>
+   </tr>
+  </table>
+  <div style="width:100% ;  height:10px"> </div>
+  <div class="label">Overview</div>
+  <div class="greydiv">
+   <div style="display:inline-block ; text-align:left">
+    <table class="connectionboxes">
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+    </table>
+   </div><span style="display:inline-block ; width:28px"> </span>
+   <div style="display:inline-block ; text-align:left"><span>
+     <br/>All Components
+     <br/>&#160;&#160;
+     <a href="#module_eth_tse_0"><b>eth_tse_0</b>
+     </a> altera_eth_tse 22.4.0
+     <br/>&#160;&#160;
+     <a href="#module_eth_tse_0_i_tse_pcs_0"><b>eth_tse_0_i_tse_pcs_0</b>
+     </a> altera_eth_tse_pcs_pma_nf_phyip 19.5.0</span>
+   </div>
+  </div>
+  <div style="width:100% ;  height:10px"> </div>
+  <div class="label">Memory Map</div>
+  <table class="mmap">
+   <tr>
+    <td class="empty" rowspan="2"></td>
+   </tr>
+   <tr>
+    <td class="slavemodule">&#160;
+     <a href="#module_eth_tse_0"><b>eth_tse_0</b>
+     </a>
+    </td>
+   </tr>
+   <tr>
+    <td class="slaveb">control_port&#160;</td>
+   </tr>
+   <tr>
+    <td class="slavemodule">&#160;
+     <a href="#module_eth_tse_0_i_tse_pcs_0"><b>eth_tse_0_i_tse_pcs_0</b>
+     </a>
+    </td>
+   </tr>
+   <tr>
+    <td class="slaveb">control_port&#160;</td>
+   </tr>
+  </table>
+  <a name="module_eth_tse_0"> </a>
+  <div>
+   <hr/>
+   <h2>eth_tse_0</h2>altera_eth_tse v22.4.0
+   <br/>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">core_variation</td>
+        <td class="parametervalue">PCS_ONLY</td>
+       </tr>
+       <tr>
+        <td class="parametername">ifGMII</td>
+        <td class="parametervalue">MII_GMII</td>
+       </tr>
+       <tr>
+        <td class="parametername">use_mac_clken</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_use_internal_fifo</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_ecc</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">max_channels</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">transceiver_type</td>
+        <td class="parametervalue">GXB</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_hd_logic</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_gmii_loopback</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_sup_addr</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">stat_cnt_ena</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">ext_stat_cnt_ena</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">ena_hash</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_shift16</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_mac_flow_ctrl</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_mac_vlan</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_magic_detect</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">useMDIO</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">mdio_clk_div</td>
+        <td class="parametervalue">40</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_ena</td>
+        <td class="parametervalue">8</td>
+       </tr>
+       <tr>
+        <td class="parametername">eg_addr</td>
+        <td class="parametervalue">11</td>
+       </tr>
+       <tr>
+        <td class="parametername">ing_addr</td>
+        <td class="parametervalue">11</td>
+       </tr>
+       <tr>
+        <td class="parametername">phy_identifier</td>
+        <td class="parametervalue">85</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_sgmii</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">export_pwrdn</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_alt_reconfig</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">starting_channel_number</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">phyip_pll_type</td>
+        <td class="parametervalue">CMU</td>
+       </tr>
+       <tr>
+        <td class="parametername">phyip_pll_base_data_rate</td>
+        <td class="parametervalue">1250 Mbps</td>
+       </tr>
+       <tr>
+        <td class="parametername">phyip_en_synce_support</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">phyip_pma_bonding_mode</td>
+        <td class="parametervalue">x1</td>
+       </tr>
+       <tr>
+        <td class="parametername">nf_phyip_rcfg_enable</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">XCVR_RCFG_JTAG_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">XCVR_SET_CAPABILITY_REG_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">XCVR_SET_USER_IDENTIFIER</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">XCVR_SET_CSR_SOFT_LOGIC_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">XCVR_SET_PRBS_SOFT_LOGIC_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">nd_phyip_rcfg_enable</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">ftile_phyip_rcfg_enable</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">data_clocking_mode</td>
+        <td class="parametervalue">xcvr</td>
+       </tr>
+       <tr>
+        <td class="parametername">System_PLL_Frequency</td>
+        <td class="parametervalue">805.664062</td>
+       </tr>
+       <tr>
+        <td class="parametername">l_av1_enable_tse</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">avmm2_enable_tse</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">ND_XCVR_RCFG_JTAG_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">ND_XCVR_SET_CAPABILITY_REG_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">ND_XCVR_SET_USER_IDENTIFIER</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">ND_XCVR_SET_CSR_SOFT_LOGIC_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_timestamping</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_deterministic_latency</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_ptp_1step</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">tstamp_fp_width</td>
+        <td class="parametervalue">4</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcp_load_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">adpt_recipe_cnt</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">adpt_recipe_select</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">EXAMPLE_DESIGN_VARIANT</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">GEN_SIM</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">GEN_SYNTH</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">HDL_FORMAT</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">DEV_BOARD</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>
+      <table>
+       <tr>
+        <td class="parametername">ENABLE_MACLITE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">FIFO_WIDTH</td>
+        <td class="parametervalue">8</td>
+       </tr>
+       <tr>
+        <td class="parametername">IS_MULTICHANNEL_MAC</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">MACLITE_GIGE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">MDIO_SHARED</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">NUMBER_OF_CHANNEL</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">NUMBER_OF_MAC_MDIO_SHARED</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">PCS</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">PCS_ID</td>
+        <td class="parametervalue">85</td>
+       </tr>
+       <tr>
+        <td class="parametername">PCS_SGMII</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">RECEIVE_FIFO_DEPTH</td>
+        <td class="parametervalue">2048</td>
+       </tr>
+       <tr>
+        <td class="parametername">REGISTER_SHARED</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">RGMII</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">TRANSMIT_FIFO_DEPTH</td>
+        <td class="parametervalue">2048</td>
+       </tr>
+       <tr>
+        <td class="parametername">USE_MDIO</td>
+        <td class="parametervalue">0</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_eth_tse_0_reg_clk_module"> </a>
+  <div>
+   <hr/>
+   <h2>eth_tse_0_reg_clk_module</h2>altera_clock_bridge v19.2.0
+   <br/>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">DERIVED_CLOCK_RATE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">EXPLICIT_CLOCK_RATE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">NUM_CLOCK_OUTPUTS</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_eth_tse_0_reg_rst_module"> </a>
+  <div>
+   <hr/>
+   <h2>eth_tse_0_reg_rst_module</h2>altera_reset_bridge v19.2.0
+   <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_eth_tse_0_reg_clk_module">eth_tse_0_reg_clk_module</a>
+      </td>
+      <td class="from">out_clk&#160;&#160;</td>
+      <td class="main" rowspan="4">eth_tse_0_reg_rst_module</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;clk</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">out_reset&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_eth_tse_0_i_tse_pcs_0">eth_tse_0_i_tse_pcs_0</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;reset_connection</td>
+     </tr>
+    </table>
+   </div>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">ACTIVE_LOW_RESET</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">SYNCHRONOUS_EDGES</td>
+        <td class="parametervalue">deassert</td>
+       </tr>
+       <tr>
+        <td class="parametername">O_SYNCHRONOUS_EDGES</td>
+        <td class="parametervalue">deassert</td>
+       </tr>
+       <tr>
+        <td class="parametername">NUM_RESET_OUTPUTS</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">USE_RESET_REQUEST</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">SYNC_RESET</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_eth_tse_0_ref_clk_module"> </a>
+  <div>
+   <hr/>
+   <h2>eth_tse_0_ref_clk_module</h2>altera_clock_bridge v19.2.0
+   <br/>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">DERIVED_CLOCK_RATE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">EXPLICIT_CLOCK_RATE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">NUM_CLOCK_OUTPUTS</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_eth_tse_0_i_tse_pcs_0"> </a>
+  <div>
+   <hr/>
+   <h2>eth_tse_0_i_tse_pcs_0</h2>altera_eth_tse_pcs_pma_nf_phyip v19.5.0
+   <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_eth_tse_0_reg_clk_module">eth_tse_0_reg_clk_module</a>
+      </td>
+      <td class="from">out_clk&#160;&#160;</td>
+      <td class="main" rowspan="38">eth_tse_0_i_tse_pcs_0</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;control_port_clock_connection</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_eth_tse_0_reg_rst_module">eth_tse_0_reg_rst_module</a>
+      </td>
+      <td class="from">out_reset&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;reset_connection</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_eth_tse_0_phyip_rxclkout_splitter_instance_0">eth_tse_0_phyip_rxclkout_splitter_instance_0</a>
+      </td>
+      <td class="from">sig_fanout0&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_pcs_clk</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_eth_tse_0_ref_clk_module">eth_tse_0_ref_clk_module</a>
+      </td>
+      <td class="from">out_clk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;pcs_ref_clk_clock_connection</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">sd_loopback&#160;&#160;</td>
+      <td class="neighbor" rowspan="6">
+       <a href="#module_eth_tse_0_i_nf_native_phyip_terminator_0">eth_tse_0_i_nf_native_phyip_terminator_0</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;sd_loopback</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_runlengthviolation&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_runlengthviolation</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">tx_pcs_clk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;tx_pcs_clk</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_patterndetect&#160;&#160;</td>
+      <td class="neighbor" rowspan="20">
+       <a href="#module_eth_tse_0_i_nf_native_phyip_0">eth_tse_0_i_nf_native_phyip_0</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_patterndetect</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_frame&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_parallel_data</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">tx_kchar&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;tx_datak</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_disp_err&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_disperr</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_char_err_gx&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_errdetect</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_syncstatus&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_syncstatus</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_runningdisp&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_runningdisp</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_kchar&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_datak</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">tx_frame&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;tx_parallel_data</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">wa_boundary&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_std_bitslipboundarysel</td>
+     </tr>
+    </table>
+   </div>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">ENABLE_TIMESTAMPING</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">DEV_VERSION</td>
+        <td class="parametervalue">5636</td>
+       </tr>
+       <tr>
+        <td class="parametername">ENABLE_ECC</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">DEVICE_FAMILY</td>
+        <td class="parametervalue">CYCLONE10GX</td>
+       </tr>
+       <tr>
+        <td class="parametername">SYNCHRONIZER_DEPTH</td>
+        <td class="parametervalue">3</td>
+       </tr>
+       <tr>
+        <td class="parametername">ENABLE_CLK_SHARING</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">ENABLE_SGMII</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">PHY_IDENTIFIER</td>
+        <td class="parametervalue">85</td>
+       </tr>
+       <tr>
+        <td class="parametername">connect_to_mac</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_use_internal_fifo</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_hd_logic</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_eth_tse_0_i_nf_native_phyip_0"> </a>
+  <div>
+   <hr/>
+   <h2>eth_tse_0_i_nf_native_phyip_0</h2>altera_xcvr_native_a10 v19.1.1
+   <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="20">
+       <a href="#module_eth_tse_0_i_tse_pcs_0">eth_tse_0_i_tse_pcs_0</a>
+      </td>
+      <td class="from">rx_patterndetect&#160;&#160;</td>
+      <td class="main" rowspan="41">eth_tse_0_i_nf_native_phyip_0</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_patterndetect</td>
+     </tr>
+     <tr>
+      <td class="from">rx_frame&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_parallel_data</td>
+     </tr>
+     <tr>
+      <td class="from">tx_kchar&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;tx_datak</td>
+     </tr>
+     <tr>
+      <td class="from">rx_disp_err&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_disperr</td>
+     </tr>
+     <tr>
+      <td class="from">rx_char_err_gx&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_errdetect</td>
+     </tr>
+     <tr>
+      <td class="from">rx_syncstatus&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_syncstatus</td>
+     </tr>
+     <tr>
+      <td class="from">rx_runningdisp&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_runningdisp</td>
+     </tr>
+     <tr>
+      <td class="from">rx_kchar&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_datak</td>
+     </tr>
+     <tr>
+      <td class="from">tx_frame&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;tx_parallel_data</td>
+     </tr>
+     <tr>
+      <td class="from">wa_boundary&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_std_bitslipboundarysel</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_eth_tse_0_i_nf_native_phyip_terminator_0">eth_tse_0_i_nf_native_phyip_terminator_0</a>
+      </td>
+      <td class="from">tx_coreclk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;tx_coreclkin</td>
+     </tr>
+     <tr>
+      <td class="from">rx_coreclk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_coreclkin</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">unused_tx_parallel_data&#160;&#160;</td>
+      <td class="neighbor" rowspan="16">
+       <a href="#module_eth_tse_0_i_nf_native_phyip_terminator_0">eth_tse_0_i_nf_native_phyip_terminator_0</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;unused_tx_parallel_data</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">tx_serial_data&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;tx_serial_data</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">tx_clkout&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;tx_clk</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_seriallpbken&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_seriallpbken</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">unused_rx_parallel_data&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;unused_rx_parallel_data</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_serial_data&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_serial_data</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_clkout&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_clk</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_pma_div_clkout&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_recovered_clk</td>
+     </tr>
+    </table>
+   </div>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">message_level</td>
+        <td class="parametervalue">error</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_voltage</td>
+        <td class="parametervalue">1_0V</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_link</td>
+        <td class="parametervalue">sr</td>
+       </tr>
+       <tr>
+        <td class="parametername">protocol_mode</td>
+        <td class="parametervalue">gige_1588</td>
+       </tr>
+       <tr>
+        <td class="parametername">pma_mode</td>
+        <td class="parametervalue">basic</td>
+       </tr>
+       <tr>
+        <td class="parametername">duplex_mode</td>
+        <td class="parametervalue">duplex</td>
+       </tr>
+       <tr>
+        <td class="parametername">channels</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">set_data_rate</td>
+        <td class="parametervalue">1250</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_iface_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_simple_interface</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">set_disconnect_analog_resets</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">bonded_mode</td>
+        <td class="parametervalue">not_bonded</td>
+       </tr>
+       <tr>
+        <td class="parametername">set_pcs_bonding_master</td>
+        <td class="parametervalue">Auto</td>
+       </tr>
+       <tr>
+        <td class="parametername">pcs_bonding_master</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">tx_pma_clk_div</td>
+        <td class="parametervalue">2</td>
+       </tr>
+       <tr>
+        <td class="parametername">plls</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">pll_select</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_tx_analog_reset_ack</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_tx_pma_clkout</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_tx_pma_div_clkout</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">tx_pma_div_clkout_divider</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_tx_pma_iqtxrx_clkout</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_tx_pma_elecidle</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_seriallpbken_tx</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">cdr_refclk_cnt</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">cdr_refclk_select</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">set_cdr_refclk_freq</td>
+        <td class="parametervalue">125.000</td>
+       </tr>
+       <tr>
+        <td class="parametername">rx_ppm_detect_threshold</td>
+        <td class="parametervalue">100</td>
+       </tr>
+       <tr>
+        <td class="parametername">rx_pma_ctle_adaptation_mode</td>
+        <td class="parametervalue">manual</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_analog_reset_ack</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_pma_clkout</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_pma_div_clkout</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">rx_pma_div_clkout_divider</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_pma_iqtxrx_clkout</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_pma_clkslip</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_is_lockedtodata</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_is_lockedtoref</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_ports_rx_manual_cdr_mode</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_seriallpbken</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_ports_rx_prbs</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_pcs_pma_width</td>
+        <td class="parametervalue">10</td>
+       </tr>
+       <tr>
+        <td class="parametername">display_std_tx_pld_pcs_width</td>
+        <td class="parametervalue">8</td>
+       </tr>
+       <tr>
+        <td class="parametername">display_std_rx_pld_pcs_width</td>
+        <td class="parametervalue">8</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_low_latency_bypass_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_tx_pcfifo_mode</td>
+        <td class="parametervalue">register_fifo</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_pcfifo_mode</td>
+        <td class="parametervalue">register_fifo</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_tx_std_pcfifo_full</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_tx_std_pcfifo_empty</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_std_pcfifo_full</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_std_pcfifo_empty</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_tx_byte_ser_mode</td>
+        <td class="parametervalue">Disabled</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_byte_deser_mode</td>
+        <td class="parametervalue">Disabled</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_tx_8b10b_enable</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_tx_8b10b_disp_ctrl_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_8b10b_enable</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_rmfifo_mode</td>
+        <td class="parametervalue">disabled</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_rmfifo_pattern_n</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_rmfifo_pattern_p</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_std_rmfifo_full</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_std_rmfifo_empty</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">pcie_rate_match</td>
+        <td class="parametervalue">Bypass</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_tx_bitslip_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_tx_std_bitslipboundarysel</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_word_aligner_mode</td>
+        <td class="parametervalue">synchronous state machine</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_word_aligner_pattern_len</td>
+        <td class="parametervalue">7</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_word_aligner_pattern</td>
+        <td class="parametervalue">124</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_word_aligner_rknumber</td>
+        <td class="parametervalue">3</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_word_aligner_renumber</td>
+        <td class="parametervalue">3</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_word_aligner_rgnumber</td>
+        <td class="parametervalue">3</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_word_aligner_fast_sync_status_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_std_wa_patternalign</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_std_wa_a1a2size</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_std_bitslipboundarysel</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_std_bitslip</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_tx_bitrev_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_tx_byterev_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_tx_polinv_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_tx_polinv</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_bitrev_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_std_bitrev_ena</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_byterev_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_std_byterev_ena</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">std_rx_polinv_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_polinv</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_rx_std_signaldetect</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_ports_pipe_sw</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_ports_pipe_hclk</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_ports_pipe_g3_analog</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_ports_pipe_rx_elecidle</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_port_pipe_rx_polarity</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">generate_docs</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_shared</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_jtag_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_separate_avmm_busy</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">set_capability_reg_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">set_user_identifier</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">set_csr_soft_logic_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">set_prbs_soft_logic_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_file_prefix</td>
+        <td class="parametervalue">altera_xcvr_native_a10</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_sv_file_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_h_file_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_mif_file_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_multi_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">set_rcfg_emb_strm_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_reduced_files_enable</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_profile_cnt</td>
+        <td class="parametervalue">2</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_profile_select</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_profile_data0</td>
+        <td class="parametervalue"></td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_profile_data1</td>
+        <td class="parametervalue"></td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_profile_data2</td>
+        <td class="parametervalue"></td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_profile_data3</td>
+        <td class="parametervalue"></td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_profile_data4</td>
+        <td class="parametervalue"></td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_profile_data5</td>
+        <td class="parametervalue"></td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_profile_data6</td>
+        <td class="parametervalue"></td>
+       </tr>
+       <tr>
+        <td class="parametername">rcfg_profile_data7</td>
+        <td class="parametervalue"></td>
+       </tr>
+       <tr>
+        <td class="parametername">enable_analog_settings</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_analog_mode</td>
+        <td class="parametervalue">user_custom</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_enable_tx_default_ovr</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_vod_output_swing_ctrl</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_pre_emp_sign_pre_tap_1t</td>
+        <td class="parametervalue">fir_pre_1t_neg</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_pre_emp_switching_ctrl_pre_tap_1t</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_pre_emp_sign_pre_tap_2t</td>
+        <td class="parametervalue">fir_pre_2t_neg</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_pre_emp_switching_ctrl_pre_tap_2t</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_pre_emp_sign_1st_post_tap</td>
+        <td class="parametervalue">fir_post_1t_neg</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_pre_emp_switching_ctrl_1st_post_tap</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_pre_emp_sign_2nd_post_tap</td>
+        <td class="parametervalue">fir_post_2t_neg</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_pre_emp_switching_ctrl_2nd_post_tap</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_slew_rate_ctrl</td>
+        <td class="parametervalue">slew_r7</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_compensation_en</td>
+        <td class="parametervalue">enable</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_tx_term_sel</td>
+        <td class="parametervalue">r_r1</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_enable_rx_default_ovr</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_rx_one_stage_enable</td>
+        <td class="parametervalue">s1_mode</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_rx_eq_dc_gain_trim</td>
+        <td class="parametervalue">stg2_gain7</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_rx_adp_ctle_acgain_4s</td>
+        <td class="parametervalue">radp_ctle_acgain_4s_1</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_rx_adp_ctle_eqz_1s_sel</td>
+        <td class="parametervalue">radp_ctle_eqz_1s_sel_3</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_rx_adp_vga_sel</td>
+        <td class="parametervalue">radp_vga_sel_2</td>
+       </tr>
+       <tr>
+        <td class="parametername">anlg_rx_term_sel</td>
+        <td class="parametervalue">r_r1</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_eth_tse_0_i_nf_native_phyip_terminator_0"> </a>
+  <div>
+   <hr/>
+   <h2>eth_tse_0_i_nf_native_phyip_terminator_0</h2>altera_eth_tse_nf_phyip_terminator v19.5.0
+   <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="6">
+       <a href="#module_eth_tse_0_i_tse_pcs_0">eth_tse_0_i_tse_pcs_0</a>
+      </td>
+      <td class="from">sd_loopback&#160;&#160;</td>
+      <td class="main" rowspan="30">eth_tse_0_i_nf_native_phyip_terminator_0</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;sd_loopback</td>
+     </tr>
+     <tr>
+      <td class="from">rx_runlengthviolation&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_runlengthviolation</td>
+     </tr>
+     <tr>
+      <td class="from">tx_pcs_clk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;tx_pcs_clk</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="16">
+       <a href="#module_eth_tse_0_i_nf_native_phyip_0">eth_tse_0_i_nf_native_phyip_0</a>
+      </td>
+      <td class="from">unused_tx_parallel_data&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;unused_tx_parallel_data</td>
+     </tr>
+     <tr>
+      <td class="from">tx_serial_data&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;tx_serial_data</td>
+     </tr>
+     <tr>
+      <td class="from">tx_clkout&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;tx_clk</td>
+     </tr>
+     <tr>
+      <td class="from">rx_seriallpbken&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_seriallpbken</td>
+     </tr>
+     <tr>
+      <td class="from">unused_rx_parallel_data&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;unused_rx_parallel_data</td>
+     </tr>
+     <tr>
+      <td class="from">rx_serial_data&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_serial_data</td>
+     </tr>
+     <tr>
+      <td class="from">rx_clkout&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_clk</td>
+     </tr>
+     <tr>
+      <td class="from">rx_pma_div_clkout&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;rx_recovered_clk</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_pcs_clk&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_eth_tse_0_phyip_rxclkout_splitter_instance_0">eth_tse_0_phyip_rxclkout_splitter_instance_0</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;sig_input</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">tx_coreclk&#160;&#160;</td>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_eth_tse_0_i_nf_native_phyip_0">eth_tse_0_i_nf_native_phyip_0</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;tx_coreclkin</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">rx_coreclk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_coreclkin</td>
+     </tr>
+    </table>
+   </div>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">ENABLE_SGMII</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">ENABLE_TIMESTAMPING</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_eth_tse_0_phyip_rxclkout_splitter_instance_0"> </a>
+  <div>
+   <hr/>
+   <h2>eth_tse_0_phyip_rxclkout_splitter_instance_0</h2>altera_eth_tse_conduit_fanout v19.5.0
+   <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_eth_tse_0_i_nf_native_phyip_terminator_0">eth_tse_0_i_nf_native_phyip_terminator_0</a>
+      </td>
+      <td class="from">rx_pcs_clk&#160;&#160;</td>
+      <td class="main" rowspan="4">eth_tse_0_phyip_rxclkout_splitter_instance_0</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;sig_input</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">sig_fanout0&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_eth_tse_0_i_tse_pcs_0">eth_tse_0_i_tse_pcs_0</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;rx_pcs_clk</td>
+     </tr>
+    </table>
+   </div>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">NUM_FANOUT</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">PORT_LIST</td>
+        <td class="parametervalue">rx_pcs_clk\,1</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <table class="blueBar">
+   <tr>
+    <td class="l">generation took 0,02 seconds</td>
+    <td class="r">rendering took 0,09 seconds</td>
+   </tr>
+  </table>
+ </body>
+</html>
