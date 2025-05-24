@@ -52,8 +52,8 @@ always @(posedge rst_i or posedge clk_i) begin
 end
 
 assign {rst, clk}     = {rst_i, clk_i};
-assign wr_out         = stb_internal &&  we_i && adr_i >= 32'h03000000 && adr_i < 32'h03000100;
-assign rd_out         = stb_internal && !we_i && adr_i >= 32'h03000000 && adr_i < 32'h03000100;
+assign wr_out         = stb_internal &&  we_i;
+assign rd_out         = stb_internal && !we_i;
 assign addr_out[ 7:0] = adr_i[ 7:0];
 assign data_out[31:0] = dat_i[31:0];
 

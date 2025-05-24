@@ -1,4 +1,7 @@
 `timescale 1ns/1ns
+`include "./tss/tss_pkg.svh"
+
+
 module top_top (
   input        fpga_resetn, // Global reset, low active
   input        sfp_refclkp, // Reference clock for SFP+ from U64
@@ -59,15 +62,7 @@ module top_top (
   wire [7:0] gmii_tx_d [1:0];
   wire [1:0] eth_link_up;
 
-  // wishbone bus
-  wire [31:0] wb_adr;
-  wire [31:0] wb_data_w;
-  wire [31:0] wb_data_r;
-  wire        wb_we;
-  wire [3:0]  wb_sel;
-  wire        wb_stb;
-  wire        wb_ack;
-  wire        wb_cyc;
+
 
 // ------------------- Global reset ------------------- 
   wire clean_rst_long_n;
@@ -140,13 +135,47 @@ module top_top (
     .debug()
   );
   assign LEDSn[2:1] = eth_link_up;
-  assign LEDSn[0] = gmii_rx_ctrl;
+  assign LEDSn[0] = gmii_rx_ctrl[0];
+
+  // wishbone bus
+  wire [31:0] wbm_adr;
+  wire [31:0] wbm_data_w;
+  wire [31:0] wbm_data_r;
+  wire        wbm_we;
+  wire [3:0]  wbm_sel;
+  wire        wbm_stb;
+  wire        wbm_ack;
+  wire        wbm_cyc;
+
+  wire [31:0] wbs_data_w;
+  wire [31:0] wbs_addr;
+
+  // ptp slave signals
+  wire [31:0] wbs_ptp_data_r;
+  wire        wbs_ptp_ack;
+  wire        wbs_ptp_cyc;
+  wire        wbs_ptp_stb;
+  wire        wbs_ptp_we;
+
+  // ptp_gen slave signals
+  wire [31:0] wbs_gen_data_r;
+  wire        wbs_gen_ack;
+  wire        wbs_gen_cyc;
+  wire        wbs_gen_stb;
+  wire        wbs_gen_we;
+
+  // tss slave signals
+  wire [31:0] wbs_tss_data_r;
+  wire        wbs_tss_ack;
+  wire        wbs_tss_cyc;
+  wire        wbs_tss_stb;
+  wire        wbs_tss_we;
 
   top_soc soc_inst (
-    .clock_main(gmii_tx_clk),
+    .clock_main(gmii_tx_clk[0]),
     .rst_n(clean_rst_n),
     .BUTTONn(BUTTONn[1:0]),
-    .LEDSn(LEDSn[2:0]),
+    .LEDSn(),
     .RGB1n(RGB1n),
     .RGB2n(RGB2n),
     .SEG1n(SEG1n),
@@ -155,36 +184,59 @@ module top_top (
     .TXD(TXD),
     .RXD(RXD),
 
-    .wbm_adr_o(wb_adr),
-    .wbm_dat_o(wb_data_w),
-    .wbm_dat_i(wb_data_r),
-    .wbm_we_o(wb_we),
-    .wbm_sel_o(wb_sel),
-    .wbm_stb_o(wb_stb),
-    .wbm_ack_i(wb_ack),
-    .wbm_cyc_o(wb_cyc)
+    .wbm_adr_o(wbm_adr),
+    .wbm_dat_o(wbm_data_w),
+    .wbm_dat_i(wbm_data_r),
+    .wbm_we_o(wbm_we),
+    .wbm_sel_o(wbm_sel),
+    .wbm_stb_o(wbm_stb),
+    .wbm_ack_i(wbm_ack),
+    .wbm_cyc_o(wbm_cyc)
   );
 
+  wb_interconnect #(
+      .NUM_SLAVE(3)
+    ) intercon_inst (
+      .clk(gmii_tx_clk),
+      .rst(clean_rst_n),
+      
+      .i_wbm_cyc(wbm_cyc),
+      .i_wbm_stb(wbm_stb),
+      .i_wbm_we(wbm_we),
+      .i_wbm_addr(wbm_adr),
+      .i_wbm_data(wbm_data_w),
+      .o_wbm_data(wbm_data_r),
+      .o_wbm_ack(wbm_ack),
+
+      .o_wbs_cyc({wbs_tss_cyc, wbs_gen_cyc, wbs_ptp_cyc}),
+      .o_wbs_stb({wbs_tss_stb, wbs_gen_stb, wbs_ptp_stb}),
+      .o_wbs_we({wbs_tss_we, wbs_gen_we, wbs_ptp_we}),
+      .o_wbs_addr(wbs_addr),
+      .o_wbs_data(wbs_data_w),
+      .i_wbs_data({wbs_tss_data_r, wbs_gen_data_r, wbs_ptp_data_r}),
+      .i_wbs_ack({wbs_tss_ack, wbs_gen_ack, wbs_ptp_ack})
+    );
+
   ha1588_wb ptp_inst (
-    .clk_i(gmii_tx_clk),
+    .clk_i(gmii_tx_clk[0]),
     .rst_i(!clean_rst_n),
-    .stb_i(wb_stb),
-    .we_i(wb_we),
-    .ack_o(wb_ack),
-    .adr_i(wb_adr),
-    .dat_i(wb_data_w),
-    .dat_o(wb_data_r),
+    .stb_i(wbs_ptp_stb),
+    .we_i(wbs_ptp_we),
+    .ack_o(wbs_ptp_ack),
+    .adr_i(wbs_addr),
+    .dat_i(wbs_data_w),
+    .dat_o(wbs_ptp_data_r),
     
-    .rtc_clk(gmii_tx_clk),
+    .rtc_clk(gmii_tx_clk[0]),
     .rtc_time_ptp_ns(),
     .rtc_time_ptp_sec(),
     .rtc_time_one_pps(fmc_la_txp11),
     
-    .rx_gmii_clk(gmii_rx_clk),
+    .rx_gmii_clk(gmii_rx_clk[0]),
     .rx_gmii_ctrl(gmii_rx_ctrl[0]),
     .rx_gmii_data(gmii_rx_d[0]),
     .rx_giga_mode(1'h1),
-    .tx_gmii_clk(gmii_tx_clk),
+    .tx_gmii_clk(gmii_tx_clk[0]),
     .tx_gmii_ctrl(gmii_tx_ctrl[0]),
     .tx_gmii_data(gmii_tx_d[0]),
     .tx_giga_mode(1'h1)
@@ -201,14 +253,14 @@ module top_top (
   wire       tss_axis_tlast;
 
   ptp_gen ptp_gen_inst (
-    .clk(gmii_tx_clk),
+    .clk(gmii_tx_clk[0]),
     .rst_n(clean_rst_n),
-    .wbs_addr_i(wb_adr),
-    .wbs_data_i(wb_data_w),
-    .wbs_data_o(wb_data_r),
-    .wbs_we_i(wb_we),
-    .wbs_stb_i(wb_stb),
-    .wbs_ack_o(wb_ack),
+    .wbs_addr_i(wbs_addr),
+    .wbs_data_i(wbs_data_w),
+    .wbs_data_o(wbs_gen_data_r),
+    .wbs_we_i(wbs_gen_we),
+    .wbs_stb_i(wbs_gen_stb),
+    .wbs_ack_o(wbs_gen_ack),
 
     .axis_tdata_o(ptp_axis_tdata),
     .axis_tvalid_o(ptp_axis_tvalid),
@@ -217,14 +269,14 @@ module top_top (
   );
 
   tss_controller_tx tss_tx_inst (
-    .clk(gmii_tx_clk),
+    .clk(gmii_tx_clk[0]),
     .arst(!clean_rst_n),
-    .wbs_we_i(wb_we),
-    .wbs_addr_i(wb_adr),
-    .wbs_data_i(wb_data_w),
-    .wbs_data_o(wb_data_r),
-    .wbs_stb_i(wb_stb),
-    .wbs_ack_o(wb_ack),
+    .wbs_we_i(wbs_tss_we),
+    .wbs_addr_i(wbs_addr),
+    .wbs_data_i(wbs_data_w),
+    .wbs_data_o(wbs_tss_data_r),
+    .wbs_stb_i(wbs_tss_stb),
+    .wbs_ack_o(wbs_tss_ack),
 
     .timer_valid_i(),
     .timer_i(),
@@ -238,9 +290,9 @@ module top_top (
   gmii_udp_tx #(
     .DATA_WIDTH(8)
   ) gmii_inst (
-    .rx_clk(gmii_rx_clk),
-    .tx_clk(gmii_tx_clk),
-    .logic_clk(gmii_tx_clk),
+    .rx_clk(gmii_rx_clk[0]),
+    .tx_clk(gmii_tx_clk[0]),
+    .logic_clk(gmii_tx_clk[0]),
     .rst(~clean_rst_n),
 
     .gmii_txd(gmii_tx_d[0]),
@@ -249,7 +301,7 @@ module top_top (
     
     .gmii_rxd(gmii_rx_d[0]),
     .gmii_rx_dv(gmii_rx_ctrl[0]),
-    .gmii_tx_er(1'h0),
+    .gmii_rx_er(1'h0),
     
     .tx_tss_udp_payload_axis_tdata(tss_axis_tdata),
     .tx_tss_udp_payload_axis_tvalid(tss_axis_tvalid),

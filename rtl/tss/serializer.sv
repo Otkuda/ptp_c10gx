@@ -12,7 +12,6 @@
 //        m_axis    - AXI-Stream master interface
 //--------------------------------------------------------------------
 
-`include "tss_pkg.svh"
 
 import tss_pkg::*;
 

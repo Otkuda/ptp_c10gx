@@ -32,6 +32,14 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
 set_global_assignment -name DEVICE 10CX220YF780E5G
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name SOURCE_FILE rtl/tss/tss_pkg.svh
+set_global_assignment -name VERILOG_FILE rtl/i2c_init_sfp.v
+set_global_assignment -name IP_FILE ip/tse.ip
+set_global_assignment -name IP_FILE ip/eth_rst.ip
+set_global_assignment -name IP_FILE ip/eth_fpll_1250.ip
+set_global_assignment -name VERILOG_FILE rtl/gmii_udp_loopback.v
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/eth_phy.sv
+set_global_assignment -name VERILOG_FILE rtl/wb_interconnect.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/top_top.sv
 set_global_assignment -name VERILOG_FILE rtl/priority_encoder.v
 set_global_assignment -name VERILOG_FILE rtl/axis_arb_mux_wrap_2.v
@@ -52,7 +60,6 @@ set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name POWER_APPLY_THERMAL_MARGIN ADDITIONAL
 set_global_assignment -name IP_FILE dcfifo_ptp.ip
-set_location_assignment PIN_J23 -to clk -comment IOBANK_2L
 set_location_assignment PIN_AF6 -to LEDSn[0] -comment IOBANK_3A
 set_location_assignment PIN_AE6 -to LEDSn[1] -comment IOBANK_3A
 set_location_assignment PIN_AC6 -to LEDSn[2] -comment IOBANK_3A
@@ -74,9 +81,8 @@ set_instance_assignment -name VIRTUAL_PIN ON -to debug[5]
 set_instance_assignment -name VIRTUAL_PIN ON -to debug[6]
 set_instance_assignment -name VIRTUAL_PIN ON -to debug[7]
 set_instance_assignment -name VIRTUAL_PIN ON -to debug[0]
-set_location_assignment PIN_AF3 -to debug[2] -comment IOBANK_3A
 set_global_assignment -name BOARD default
-set_global_assignment -name ENABLE_SIGNALTAP OFF
+set_global_assignment -name ENABLE_SIGNALTAP ON
 set_global_assignment -name USE_SIGNALTAP_FILE stp1.stp
 set_global_assignment -name SIGNALTAP_FILE stp1.stp
 set_global_assignment -name SDC_FILE SDC1.sdc
@@ -86,3 +92,62 @@ set_global_assignment -name SEARCH_PATH udp_alex/udp/rtl
 set_global_assignment -name SEARCH_PATH "pspod-lib/library/general/rtl"
 set_global_assignment -name SEARCH_PATH i2c_alex/rtl
 set_global_assignment -name SEARCH_PATH rtl/ptp
+set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2012
+set_location_assignment PIN_AC12 -to fpga_resetn -comment IOBANK_2A
+set_location_assignment PIN_J23 -to c10_clk50m -comment IOBANK_2L
+set_location_assignment PIN_AF3 -to fmc_la_rxn7 -comment IOBANK_3A
+set_location_assignment PIN_AG3 -to fmc_la_rxp7 -comment IOBANK_3A
+set_location_assignment PIN_AF1 -to fmc_la_txn8 -comment IOBANK_3A
+set_location_assignment PIN_AG1 -to fmc_la_txp8 -comment IOBANK_3A
+set_location_assignment PIN_AB4 -to fmc_la_txn11 -comment IOBANK_3A
+set_location_assignment PIN_Y6 -to fmc_la_txn13 -comment IOBANK_3A
+set_location_assignment PIN_AC5 -to fmc_la_txp11 -comment IOBANK_3A
+set_location_assignment PIN_Y7 -to fmc_la_txp13 -comment IOBANK_3A
+set_location_assignment PIN_J22 -to rf_out -comment IOBANK_2L
+set_location_assignment PIN_E23 -to sfp_int[0] -comment IOBANK_2L
+set_location_assignment PIN_D23 -to sfp_int[1] -comment IOBANK_2L
+set_location_assignment PIN_N24 -to sfp_refclkp -comment IOBANK_1D
+set_location_assignment PIN_F26 -to sfp_rxp[0] -comment IOBANK_1D
+set_location_assignment PIN_H26 -to sfp_rxp[1] -comment IOBANK_1D
+set_location_assignment PIN_E21 -to sfp_scl[0] -comment IOBANK_2L
+set_location_assignment PIN_H21 -to sfp_scl[1] -comment IOBANK_2L
+set_location_assignment PIN_D22 -to sfp_sda[0] -comment IOBANK_2L
+set_location_assignment PIN_H20 -to sfp_sda[1] -comment IOBANK_2L
+set_location_assignment PIN_G28 -to sfp_txp[0] -comment IOBANK_1D
+set_location_assignment PIN_J28 -to sfp_txp[1] -comment IOBANK_1D
+set_instance_assignment -name IO_STANDARD LVDS -to sfp_refclkp -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to BUTTONn[0] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to BUTTONn[1] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to BUTTONn[2] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to BUTTONn -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to LEDSn[0] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to LEDSn[1] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to LEDSn[2] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to LEDSn[3] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to LEDSn -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to RXD -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to TXD -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to c10_clk50m -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to fmc_la_rxn7 -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to fmc_la_rxp7 -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to fmc_la_txn8 -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to fmc_la_txn11 -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to fmc_la_txn13 -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to fmc_la_txp8 -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to fmc_la_txp11 -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to fmc_la_txp13 -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to rf_out -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to fpga_resetn -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to sfp_int[0] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to sfp_int[1] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to sfp_int -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to sfp_scl[0] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to sfp_scl[1] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to sfp_scl -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to sfp_sda[0] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to sfp_sda[1] -entity top_top
+set_instance_assignment -name IO_STANDARD "1.8-V" -to sfp_sda -entity top_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to sfp_txp[0] -entity top_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to sfp_txp[1] -entity top_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to sfp_rxp[0] -entity top_top
+set_instance_assignment -name IO_STANDARD "HIGH SPEED DIFFERENTIAL I/O" -to sfp_rxp[1] -entity top_top

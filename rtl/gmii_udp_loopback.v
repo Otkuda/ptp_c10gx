@@ -300,11 +300,11 @@ eth_axis_tx_inst (
     .s_eth_dest_mac(tx_eth_dest_mac),
     .s_eth_src_mac(tx_eth_src_mac),
     .s_eth_type(tx_eth_type),
-    .s_eth_payload_axis_tdata(tx_eth_payload_axis_tdata),
-    .s_eth_payload_axis_tvalid(tx_eth_payload_axis_tvalid),
-    .s_eth_payload_axis_tready(tx_eth_payload_axis_tready),
-    .s_eth_payload_axis_tlast(tx_eth_payload_axis_tlast),
-    .s_eth_payload_axis_tuser(tx_eth_payload_axis_tuser),
+    .s_eth_payload_axis_tdata(m_axis_tdata),
+    .s_eth_payload_axis_tvalid(m_axis_tvalid),
+    .s_eth_payload_axis_tready(m_axis_tready),
+    .s_eth_payload_axis_tlast(m_axis_tlast),
+    .s_eth_payload_axis_tuser(m_axis_tuser),
     // AXI output
     .m_axis_tdata(tx_axis_tdata),
     .m_axis_tvalid(tx_axis_tvalid),
@@ -515,8 +515,6 @@ udp_complete_inst (
     .clear_arp_cache('0)
 );
 
-
-assign debug = '0;
 
 endmodule
 
