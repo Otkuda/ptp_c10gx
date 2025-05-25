@@ -10,7 +10,7 @@
 
 extern void delay_1s();
 
-char greet[] = "\n\r\n\r__RiscV StepFPGA__\n\rMax10 10M08SAM153C8G\n\r";
+char greet[] = "\n\r\n\r__RiscV PicoRV__\n\rCyclone10GX\n\r";
 
 uint32_t val = 0;
 uint8_t timer_enabled = 0;
@@ -43,12 +43,22 @@ void menu() {
 }
 
 void ptp_init() {
-	RTC_PERIOD_H = 8;
-	RTC_PERIOD_L = 0;
-	RTC_CTRL = 0;
+	RTC_PERIOD_H = RTC_SET_PERIOD_H;
+	RTC_PERIOD_L = RTC_SET_PERIOD_L;
+	RTC_CTRL = RTC_SET_CTRL_0;
 	RTC_CTRL = RTC_SET_PERIOD;
-	RTC_CTRL = 0;
-	print_str("ptp initd");
+	RTC_CTRL = RTC_SET_CTRL_0;
+	print_str("RTC set\n");
+	TSU_RXQUE_STATUS = TSU_MASK_RXMSGID
+	TSU_TXQUE_STATUS = TSU_MASK_TXMSGID
+	TSU_RXCTRL = TSU_SET_CTRL_0
+	TSU_RXCTRL = TSU_SET_RXRST
+	TSU_TXCTRL = TSU_SET_CTRL_0
+	TSU_TXCTRL = TSU_SET_TXRST
+}
+
+void synchronize(uint16_t seq_id) {
+	
 }
 
 /*
@@ -64,8 +74,8 @@ int main() {
 	RTC_CTRL = RTC_SET_RESET;
 	RTC_CTRL = RTC_SET_CTRL_0;
 	while (1) {
+		// UART check
 		if ((rx_temp = uart_rx) != 0xff) {
-
 			switch (rx_temp) {
 				case 't':
 					if (timer_enabled) {
@@ -84,32 +94,6 @@ int main() {
 					menu();
 					break;
 					
-				case 'r':
-					rgb1 = RGB_RED;
-					rgb2 = RGB_RED;
-					break;
-					
-				case 'g':
-					rgb1 = RGB_GREEN;
-					rgb2 = RGB_GREEN;
-					break;
-					
-				case 'b':
-					rgb1 = RGB_BLUE;
-					rgb2 = RGB_BLUE;
-					break;
-
-				case 'o':
-					rgb1 = RGB_OFF;
-					rgb2 = RGB_OFF;
-					break;
-					
-				case 's':
-					print_str("switch: ");
-					print_hex(sw, 2);
-					print_str("\n\r");
-					break;
-				
 				case 'i':
 					ptp_init();
 					break;
@@ -121,7 +105,9 @@ int main() {
 					break;
 			}
 		}
-
+		if (TSU_RXQUE_STATUS & 0x00FFFFFF > 0) {
+			synchronize()
+		}
 	}
 	return 0;
 }

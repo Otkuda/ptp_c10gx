@@ -7,19 +7,6 @@
 // 8-bit leds
 #define leds 	(* (volatile uint32_t *) 	0x02000000)
 
-// 7-segment display
-#define segment1 (* (volatile uint32_t *) 	0x02002000)	
-#define segment2 (* (volatile uint32_t *) 	0x02002004)	
-#define segment_disable = 0x00000020
-
-// 2x RGB leds
-#define rgb1	(* (volatile uint32_t *) 	0x02003000)
-#define rgb2	(* (volatile uint32_t *) 	0x02003004)
-#define RGB_RED 	6
-#define RGB_GREEN	5
-#define RGB_BLUE	3
-#define RGB_OFF		7
-
 // UART
 #define uart_div	(* (volatile uint32_t *) 	0x02004008)
 #define uart_rx		(* (volatile uint32_t *) 	0x02004000)
@@ -27,9 +14,6 @@
 
 // button
 #define buttons		(* (volatile uint32_t *) 	0x02005000)
-
-// switch
-#define sw 			(* (volatile uint32_t *) 	0x02008000)
 
 /* -- not used --
 #define spimem (* (volatile uint32_t *) 	0x00100000)
@@ -63,18 +47,18 @@
 #define RTC_ACCMOD_L 0x0         // 256 for 8bit
 
 // define TSU address values
-#define TSU_RXCTRL        (* (volatile uint32_t *) 0x00000040)
-#define TSU_RXQUE_STATUS  (* (volatile uint32_t *) 0x00000044)
-#define TSU_RXQUE_DATA_HH (* (volatile uint32_t *) 0x00000050)
-#define TSU_RXQUE_DATA_HL (* (volatile uint32_t *) 0x00000054)
-#define TSU_RXQUE_DATA_LH (* (volatile uint32_t *) 0x00000058)
-#define TSU_RXQUE_DATA_LL (* (volatile uint32_t *) 0x0000005C)
-#define TSU_TXCTRL        (* (volatile uint32_t *) 0x00000060)
-#define TSU_TXQUE_STATUS  (* (volatile uint32_t *) 0x00000064)
-#define TSU_TXQUE_DATA_HH (* (volatile uint32_t *) 0x00000070)
-#define TSU_TXQUE_DATA_HL (* (volatile uint32_t *) 0x00000074)
-#define TSU_TXQUE_DATA_LH (* (volatile uint32_t *) 0x00000078)
-#define TSU_TXQUE_DATA_LL (* (volatile uint32_t *) 0x0000007C)
+#define TSU_RXCTRL        (* (volatile uint32_t *) 0x03000040)
+#define TSU_RXQUE_STATUS  (* (volatile uint32_t *) 0x03000044)
+#define TSU_RXQUE_DATA_HH (* (volatile uint32_t *) 0x03000050)
+#define TSU_RXQUE_DATA_HL (* (volatile uint32_t *) 0x03000054)
+#define TSU_RXQUE_DATA_LH (* (volatile uint32_t *) 0x03000058)
+#define TSU_RXQUE_DATA_LL (* (volatile uint32_t *) 0x0300005C)
+#define TSU_TXCTRL        (* (volatile uint32_t *) 0x03000060)
+#define TSU_TXQUE_STATUS  (* (volatile uint32_t *) 0x03000064)
+#define TSU_TXQUE_DATA_HH (* (volatile uint32_t *) 0x03000070)
+#define TSU_TXQUE_DATA_HL (* (volatile uint32_t *) 0x03000074)
+#define TSU_TXQUE_DATA_LH (* (volatile uint32_t *) 0x03000078)
+#define TSU_TXQUE_DATA_LL (* (volatile uint32_t *) 0x0300007C)
 // define TSU control values
 #define TSU_SET_CTRL_0  0x00
 #define TSU_GET_RXQUE   0x01
@@ -84,6 +68,23 @@
 // define TSU data values
 #define TSU_MASK_RXMSGID 0xFF000000  // FF to enable 0x0 to 0x7
 #define TSU_MASK_TXMSGID 0xFF000000  // FF to enable 0x0 to 0x7
+
+#define PTP_GEN_CTRL (* (volatile uint32_t *) 0x03000100)
+#define PTP_GEN_INFO (* (volatile uint32_t *) 0x03000104)
+#define PTP_GEN_TSSH (* (volatile uint32_t *) 0x03000108)
+#define PTP_GEN_TSSL (* (volatile uint32_t *) 0x0300010C)
+#define PTP_GEN_TSNS (* (volatile uint32_t *) 0x03000110)
+
+#define TSS_SLICE_LEN  (* (volatile uint32_t *) 0x03000200)
+#define TSS_FRAME_LEN  (* (volatile uint32_t *) 0x03000204)
+#define TSS_BATCH_LEN  (* (volatile uint32_t *) 0x03000208)
+#define TSS_SEQ_LEN    (* (volatile uint32_t *) 0x0300020C)
+#define TSS_BATCH_INTV (* (volatile uint32_t *) 0x03000210)
+#define TSS_NEXT_FRAME (* (volatile uint32_t *) 0x03000214)
+#define TSS_LAST_FRAME (* (volatile uint32_t *) 0x03000218)
+#define TSS_DELTA_TIME (* (volatile uint32_t *) 0x0300021C)
+#define TSS_CTRL       (* (volatile uint32_t *) 0x03000220)
+
 
 #define _FREQ_ 125000000		// 50 MHz clock
 #define _BAUD_ 115200
