@@ -57,8 +57,13 @@ void ptp_init() {
 	TSU_TXCTRL = TSU_SET_TXRST
 }
 
-void synchronize(uint16_t seq_id) {
-	
+void synchronize() {
+	// prototype w/o verifying on test project
+	TSU_RXCTRL = TSU_GET_RXQUE
+	TSU_RXCTRL = TSU_SET_CTRL_0
+	// now data from ptp packet is in regs
+	uint32_t ptp_info = TSU_TXQUE_DATA_LL
+	print_hex(ptp_info, 32) 
 }
 
 /*
