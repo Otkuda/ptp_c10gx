@@ -369,7 +369,9 @@ axis_arb_mux_wrap_2 #(
 reg m_axis_tvalid_int, tx_eth_udp_hdr_valid_int;
 wire tx_eth_udp_hdr_valid;
 wire tx_eth_udp_hdr_ready;
-wire tx_eth_udp_type;
+wire [15:0] tx_eth_udp_type;
+wire [47:0] tx_eth_udp_src_mac;
+wire [47:0] tx_eth_udp_dst_mac;
 
 
 always @(posedge logic_clk) begin
@@ -380,6 +382,9 @@ end
 assign tx_eth_hdr_valid = (m_axis_tvalid && !m_axis_tvalid_int) || tx_eth_udp_hdr_valid_int;
 assign tx_eth_type = (m_axis_tdest == 8'h1) ? tx_eth_udp_type : 16'h88f7; 
 assign tx_eth_udp_hdr_ready = tx_eth_hdr_ready;
+assign tx_eth_dest_mac = (m_axis_tdest == 8'h1) ? tx_eth_udp_dst_mac : 48'h74_68_76_08_37_0d;
+assign tx_eth_src_mac = (m_axis_tdest == 8'h1) ? tx_eth_udp_src_mac : local_mac;
+
 
 wire ip_rx_busy, ip_tx_busy, udp_rx_busy, udp_tx_busy;
 
@@ -401,8 +406,8 @@ udp_complete_inst (
     // Ethernet frame output
     .m_eth_hdr_valid(tx_eth_udp_hdr_valid),
     .m_eth_hdr_ready(tx_eth_udp_hdr_ready),
-    .m_eth_dest_mac(tx_eth_dest_mac),
-    .m_eth_src_mac(tx_eth_src_mac),
+    .m_eth_dest_mac(tx_eth_udp_dst_mac),
+    .m_eth_src_mac(tx_eth_udp_src_mac),
     .m_eth_type(tx_eth_udp_type),
     .m_eth_payload_axis_tdata(tx_eth_payload_axis_tdata),
     .m_eth_payload_axis_tvalid(tx_eth_payload_axis_tvalid),

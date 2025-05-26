@@ -49,21 +49,36 @@ void ptp_init() {
 	RTC_CTRL = RTC_SET_PERIOD;
 	RTC_CTRL = RTC_SET_CTRL_0;
 	print_str("RTC set\n");
-	TSU_RXQUE_STATUS = TSU_MASK_RXMSGID
-	TSU_TXQUE_STATUS = TSU_MASK_TXMSGID
-	TSU_RXCTRL = TSU_SET_CTRL_0
-	TSU_RXCTRL = TSU_SET_RXRST
-	TSU_TXCTRL = TSU_SET_CTRL_0
-	TSU_TXCTRL = TSU_SET_TXRST
+	TSU_RXQUE_STATUS = TSU_MASK_RXMSGID;
+	TSU_TXQUE_STATUS = TSU_MASK_TXMSGID;
+	TSU_RXCTRL = TSU_SET_CTRL_0;
+	TSU_RXCTRL = TSU_SET_RXRST;
+	TSU_TXCTRL = TSU_SET_CTRL_0;
+	TSU_TXCTRL = TSU_SET_TXRST;
 }
 
 void synchronize() {
 	// prototype w/o verifying on test project
-	TSU_RXCTRL = TSU_GET_RXQUE
-	TSU_RXCTRL = TSU_SET_CTRL_0
+	TSU_RXCTRL = TSU_GET_RXQUE;
+	TSU_RXCTRL = TSU_SET_CTRL_0;
 	// now data from ptp packet is in regs
-	uint32_t ptp_info = TSU_TXQUE_DATA_LL
-	print_hex(ptp_info, 32) 
+	uint32_t ptp_info = TSU_TXQUE_DATA_LL;
+	print_hex(ptp_info, 8); 
+}
+
+void send_ptp() {
+	PTP_GEN_INFO = 0x11235555;
+	PTP_GEN_TSSL = 0x123;
+	PTP_GEN_CTRL = 0x01;
+	print_str("ptp_sent");
+}
+
+void get_time() {
+	uint32_t sec;
+	RTC_CTRL = RTC_GET_TIME;
+	sec = RTC_TIME_SEC_L;
+	print_hex(sec, 8);
+	RTC_CTRL = RTC_SET_CTRL_0;
 }
 
 /*
@@ -102,17 +117,22 @@ int main() {
 				case 'i':
 					ptp_init();
 					break;
+				
+				case 's':
+					send_ptp();
+					break;
 
+				case 'g':
+					get_time();
+					break;
 				default:
-					uart_tx = rx_temp;	// echo
-					segment1 = rx_temp & 0x0F;
-					segment2 = (rx_temp >> 4) & 0x0f; 
+					uart_tx = rx_temp;	// echos
 					break;
 			}
 		}
-		if (TSU_RXQUE_STATUS & 0x00FFFFFF > 0) {
-			synchronize()
-		}
+		// if (TSU_RXQUE_STATUS & 0x00FFFFFF > 0) {
+			
+		// }
 	}
 	return 0;
 }
