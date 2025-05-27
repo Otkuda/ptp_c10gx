@@ -48,7 +48,7 @@ void ptp_init() {
 	RTC_CTRL = RTC_SET_CTRL_0;
 	RTC_CTRL = RTC_SET_PERIOD;
 	RTC_CTRL = RTC_SET_CTRL_0;
-	print_str("RTC set\n");
+	print_str("RTC set\n\r");
 	TSU_RXQUE_STATUS = TSU_MASK_RXMSGID;
 	TSU_TXQUE_STATUS = TSU_MASK_TXMSGID;
 	TSU_RXCTRL = TSU_SET_CTRL_0;
@@ -73,12 +73,11 @@ void send_ptp() {
 	print_str("ptp_sent");
 }
 
-void get_time() {
+uint32_t get_time() {
 	uint32_t sec;
 	RTC_CTRL = RTC_GET_TIME;
-	sec = RTC_TIME_SEC_L;
-	print_hex(sec, 8);
 	RTC_CTRL = RTC_SET_CTRL_0;
+	return RTC_TIME_SEC_L;
 }
 
 /*
@@ -86,7 +85,8 @@ void get_time() {
  */
 int main() {
 	uint8_t rx_temp;
-	
+	uint32_t time_s;
+
 	// uart setup
 	uart_div = UART_DIV_VALUE;
 	irq_unmask_one_bit(IRQ20_BUTTONS);	// enable IRQ20 (buttons)
@@ -123,7 +123,8 @@ int main() {
 					break;
 
 				case 'g':
-					get_time();
+					time_s = get_time();
+					print_hex(time_s, 8);
 					break;
 				default:
 					uart_tx = rx_temp;	// echos

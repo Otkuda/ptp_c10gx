@@ -36,7 +36,7 @@ assign o_wbs_addr = i_wbm_addr;
 assign o_wbm_ack = i_wbs_ack[(i_wbm_addr[15:8])];
 
 
-assign o_wbm_data = i_wbs_data [(32 * i_wbm_addr[15:8]) -: 32];
+assign o_wbm_data = i_wbs_data [(32 *( i_wbm_addr[15:8]+1))-1 -: 32];
 
 
 endmodule
