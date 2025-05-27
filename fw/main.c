@@ -57,13 +57,55 @@ void ptp_init() {
 	TSU_TXCTRL = TSU_SET_TXRST;
 }
 
+void get_local_time(timestamp *ts) {
+	RTC_CTRL = RTC_GET_TIME;
+	RTC_CTRL = RTC_SET_CTRL_0;
+	ts->sec_h = RTC_TIME_SEC_H;
+	ts->sec_l = RTC_TIME_SEC_L;
+	ts->nsec = RTC_TIME_NSC_H;
+}
+
+void get_time_msg(timestamp *ts) {
+	ts->sec_h = TSU_RXQUE_DATA_HH;
+	ts->sec_l = TSU_RXQUE_DATA_HL;
+	ts->nsec  = TSU_RXQUE_DATA_LH;
+}
+
 void synchronize() {
+	uint32_t ptp_info;
+	uint8_t msg_id;
+	uint16_t seq_id;
+	uint8_t step;
+	timestamp ts1, ts2, ts3, ts4;
+
 	// prototype w/o verifying on test project
 	TSU_RXCTRL = TSU_GET_RXQUE;
 	TSU_RXCTRL = TSU_SET_CTRL_0;
 	// now data from ptp packet is in regs
-	uint32_t ptp_info = TSU_TXQUE_DATA_LL;
-	print_hex(ptp_info, 8); 
+	// get sync recv time into ts2
+	get_local_time(&ts2);
+	get_time_msg(&ts1);
+	// get data from registers
+	ptp_info = TSU_RXQUE_DATA_LL;
+	msg_id = ptp_info >> 28;
+	seq_id = ptp_info & 0x0000ffff;
+
+	step = FOLLOW_UP;
+	while (1) {
+		while (TSU_RXQUE_STATUS & 0x00FFFFFF > 0)
+		{
+			TSU_RXCTRL = TSU_GET_RXQUE;
+			TSU_RXCTRL = TSU_SET_CTRL_0;
+			break;
+		}
+		ptp_info = TSU_RXQUE_DATA_LL;
+		msg_id = ptp_info >> 28;
+		seq_id = ptp_info & 0x0000ffff;
+		// switch (msg_id) {
+		// 	case 
+		// }
+		
+	}
 }
 
 void send_ptp() {
@@ -73,12 +115,6 @@ void send_ptp() {
 	print_str("ptp_sent");
 }
 
-uint32_t get_time() {
-	uint32_t sec;
-	RTC_CTRL = RTC_GET_TIME;
-	RTC_CTRL = RTC_SET_CTRL_0;
-	return RTC_TIME_SEC_L;
-}
 
 /*
  * main ===============================================================================
@@ -131,9 +167,9 @@ int main() {
 					break;
 			}
 		}
-		// if (TSU_RXQUE_STATUS & 0x00FFFFFF > 0) {
-			
-		// }
+		if (TSU_RXQUE_STATUS & 0x00FFFFFF > 0) {
+			synchronize();
+		}
 	}
 	return 0;
 }

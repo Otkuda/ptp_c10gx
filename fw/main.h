@@ -90,4 +90,17 @@
 #define _BAUD_ 115200
 #define UART_DIV_VALUE (int) (_FREQ_/_BAUD_) - 1	// baud = clk_freq / (divisor + 1)
 
+#define SYNC 0x0 
+#define FOLLOW_UP 0x8
+#define DELAY_REQ 0x1
+#define DELAY_RESP 0x9
+typedef struct ts {
+    uint16_t sec_h;
+    uint32_t sec_l;
+    uint32_t nsec; 
+} timestamp;
+
+
+
+
 #endif //__MAIN_H__
