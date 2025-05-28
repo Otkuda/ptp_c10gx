@@ -60,51 +60,90 @@ void ptp_init() {
 void get_local_time(timestamp *ts) {
 	RTC_CTRL = RTC_GET_TIME;
 	RTC_CTRL = RTC_SET_CTRL_0;
-	ts->sec_h = RTC_TIME_SEC_H;
+	ts->sec_h =(uint16_t)RTC_TIME_SEC_H;
 	ts->sec_l = RTC_TIME_SEC_L;
 	ts->nsec = RTC_TIME_NSC_H;
 }
 
 void get_time_msg(timestamp *ts) {
-	ts->sec_h = TSU_RXQUE_DATA_HH;
+	ts->sec_h = (uint16_t)TSU_RXQUE_DATA_HH;
 	ts->sec_l = TSU_RXQUE_DATA_HL;
 	ts->nsec  = TSU_RXQUE_DATA_LH;
 }
 
+uint16_t seq_id, sync_seq_id;
+uint8_t step;
+timestamp ts1, ts2, ts3, ts4;
+
 void synchronize() {
 	uint32_t ptp_info;
 	uint8_t msg_id;
-	uint16_t seq_id;
-	uint8_t step;
-	timestamp ts1, ts2, ts3, ts4;
+	
 
 	// prototype w/o verifying on test project
 	TSU_RXCTRL = TSU_GET_RXQUE;
 	TSU_RXCTRL = TSU_SET_CTRL_0;
 	// now data from ptp packet is in regs
 	// get sync recv time into ts2
-	get_local_time(&ts2);
-	get_time_msg(&ts1);
 	// get data from registers
 	ptp_info = TSU_RXQUE_DATA_LL;
 	msg_id = ptp_info >> 28;
 	seq_id = ptp_info & 0x0000ffff;
-
+	// now we have sync msg -> can get t2
+	// then we have to wait for follow up
+	if (msg_id != 0) return; // synchronization starts with sync
+	get_local_time(&ts2);
 	step = FOLLOW_UP;
-	while (1) {
-		while (TSU_RXQUE_STATUS & 0x00FFFFFF > 0)
-		{
-			TSU_RXCTRL = TSU_GET_RXQUE;
-			TSU_RXCTRL = TSU_SET_CTRL_0;
-			break;
+	sync_seq_id = seq_id; 
+	while (step != SYNC) {
+		switch (step) {
+			case FOLLOW_UP:
+				if (TSU_RXQUE_STATUS & 0x00ffffff > 0) {
+					TSU_RXCTRL = TSU_GET_RXQUE;
+					TSU_RXCTRL = TSU_SET_CTRL_0;
+					ptp_info = TSU_RXQUE_DATA_LL;
+					msg_id = ptp_info >> 28;
+					seq_id = ptp_info & 0x0000ffff;
+					if (msg_id != FOLLOW_UP || seq_id != sync_seq_id) step = SYNC;
+					else {
+						get_time_msg(&ts1);
+						step = DELAY_REQ;
+					}
+				} else {
+					continue;
+				}
+				break;
+			
+			case DELAY_REQ:
+				get_local_time(&ts3);
+				PTP_GEN_INFO = 0x30000000 | sync_seq_id;
+				PTP_GEN_TSSH = ts3.sec_h;
+				PTP_GEN_TSSL = ts3.sec_l;
+				PTP_GEN_TSNS = ts3.nsec;
+				PTP_GEN_CTRL = 1;
+				step = DELAY_RESP;
+				break;
+			
+			case DELAY_RESP:
+				if (TSU_RXQUE_STATUS & 0x00ffffff > 0) {
+					TSU_RXCTRL = TSU_GET_RXQUE;
+					TSU_RXCTRL = TSU_SET_CTRL_0;
+					ptp_info = TSU_RXQUE_DATA_LL;
+					msg_id = ptp_info >> 28;
+					seq_id = ptp_info & 0x0000ffff;
+					if (msg_id != DELAY_RESP || seq_id != sync_seq_id) step = SYNC;
+					else {
+						get_time_msg(&ts4);
+						step = SYNC;
+					}
+				} else {
+					continue;
+				}
+				break;
+
+			default:
+				break;
 		}
-		ptp_info = TSU_RXQUE_DATA_LL;
-		msg_id = ptp_info >> 28;
-		seq_id = ptp_info & 0x0000ffff;
-		// switch (msg_id) {
-		// 	case 
-		// }
-		
 	}
 }
 
@@ -159,8 +198,9 @@ int main() {
 					break;
 
 				case 'g':
-					time_s = get_time();
-					print_hex(time_s, 8);
+					TSU_RXCTRL = TSU_GET_RXQUE;
+					TSU_RXCTRL = TSU_SET_CTRL_0;
+					print_hex(TSU_RXQUE_STATUS, 8);
 					break;
 				default:
 					uart_tx = rx_temp;	// echos
