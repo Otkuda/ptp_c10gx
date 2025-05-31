@@ -95,9 +95,9 @@
 #define DELAY_REQ 0x1
 #define DELAY_RESP 0x9
 typedef struct ts {
-    uint16_t sec_h;
-    uint32_t sec_l;
-    uint32_t nsec; 
+    int16_t sec_h;
+    int32_t sec_l;
+    int32_t nsec; 
 } timestamp;
 
 

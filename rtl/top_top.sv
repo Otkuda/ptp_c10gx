@@ -217,6 +217,8 @@ module top_top (
       .i_wbs_ack({wbs_tss_ack, wbs_gen_ack, wbs_ptp_ack})
     );
 
+  wire pps_out;
+
   ha1588_wb ptp_inst (
     .clk_i(gmii_tx_clk[0]),
     .rst_i(!clean_rst_n),
@@ -230,7 +232,7 @@ module top_top (
     .rtc_clk(gmii_tx_clk[0]),
     .rtc_time_ptp_ns(),
     .rtc_time_ptp_sec(),
-    .rtc_time_one_pps(fmc_la_txp11),
+    .rtc_time_one_pps(pps_out),
     
     .rx_gmii_clk(gmii_rx_clk[0]),
     .rx_gmii_ctrl(gmii_rx_ctrl[0]),
@@ -316,5 +318,6 @@ module top_top (
     .tx_ptp_payload_axis_tuser()
   );
 
+assign rf_out = pps_out;
 
 endmodule

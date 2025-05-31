@@ -382,7 +382,7 @@ end
 assign tx_eth_hdr_valid = (m_axis_tvalid && !m_axis_tvalid_int) || tx_eth_udp_hdr_valid_int;
 assign tx_eth_type = (m_axis_tdest == 8'h1) ? tx_eth_udp_type : 16'h88f7; 
 assign tx_eth_udp_hdr_ready = tx_eth_hdr_ready;
-assign tx_eth_dest_mac = (m_axis_tdest == 8'h1) ? tx_eth_udp_dst_mac : 48'h74_68_76_08_37_0d;
+assign tx_eth_dest_mac = (m_axis_tdest == 8'h1) ? tx_eth_udp_dst_mac : 48'hff_ff_ff_ff_ff_ff;
 assign tx_eth_src_mac = (m_axis_tdest == 8'h1) ? tx_eth_udp_src_mac : local_mac;
 
 

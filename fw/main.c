@@ -94,7 +94,8 @@ void synchronize() {
 	if (msg_id != 0) return; // synchronization starts with sync
 	get_local_time(&ts2);
 	step = FOLLOW_UP;
-	sync_seq_id = seq_id; 
+	sync_seq_id = seq_id;
+	print_str("got sync\n\r"); 
 	while (step != SYNC) {
 		switch (step) {
 			case FOLLOW_UP:
@@ -109,6 +110,7 @@ void synchronize() {
 						get_time_msg(&ts1);
 						step = DELAY_REQ;
 					}
+					print_str("got fu\n\r");
 				} else {
 					continue;
 				}
@@ -116,7 +118,7 @@ void synchronize() {
 			
 			case DELAY_REQ:
 				get_local_time(&ts3);
-				PTP_GEN_INFO = 0x30000000 | sync_seq_id;
+				PTP_GEN_INFO = 0x10000000 | sync_seq_id;
 				PTP_GEN_TSSH = ts3.sec_h;
 				PTP_GEN_TSSL = ts3.sec_l;
 				PTP_GEN_TSNS = ts3.nsec;
@@ -145,13 +147,23 @@ void synchronize() {
 				break;
 		}
 	}
-}
+	// calculate offset
+	
+	print_hex(ts1.sec_l, 8);
+	print_hex(ts1.nsec, 8);
+	print_str("\n\r");
 
-void send_ptp() {
-	PTP_GEN_INFO = 0x11235555;
-	PTP_GEN_TSSL = 0x123;
-	PTP_GEN_CTRL = 0x01;
-	print_str("ptp_sent");
+	print_hex(ts2.sec_l, 8);
+	print_hex(ts2.nsec, 8);
+	print_str("\n\r");
+
+	print_hex(ts3.sec_l, 8);
+	print_hex(ts3.nsec, 8);
+	print_str("\n\r");
+
+	print_hex(ts4.sec_l, 8);
+	print_hex(ts4.nsec, 8);
+	print_str("\n\r");
 }
 
 
@@ -193,15 +205,10 @@ int main() {
 					ptp_init();
 					break;
 				
-				case 's':
-					send_ptp();
-					break;
+				// case 's':
+				// 	send_ptp();
+				// 	break;
 
-				case 'g':
-					TSU_RXCTRL = TSU_GET_RXQUE;
-					TSU_RXCTRL = TSU_SET_CTRL_0;
-					print_hex(TSU_RXQUE_STATUS, 8);
-					break;
 				default:
 					uart_tx = rx_temp;	// echos
 					break;

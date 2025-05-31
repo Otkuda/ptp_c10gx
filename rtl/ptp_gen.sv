@@ -95,7 +95,7 @@ assign ptp_header = {
                     16'h0, 64'h0,
                     32'h0, 64'h0,
                     16'h1, gen_info_reg[15:0],
-                    8'h0, 8'hf
+                    8'h0, 8'h0
                     };
 
 logic [PTP_HEADER_W+80:0] ptp_data;

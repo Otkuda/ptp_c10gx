@@ -226,7 +226,7 @@ always @(posedge rst or posedge clk) begin
       ptp_cksum <= ptp_data[31:24] + ptp_data[23:16] + ptp_data[15: 8] + ptp_data[ 7: 0] + ptp_cksum;
     if (int_valid && ptp_cnt==10'd8)
       ptp_cksum <= ptp_data[31:24] + ptp_data[23:16]                                     + ptp_cksum;
-  end
+  end // add save of timestamp in msg if 9 & valid, 10 & valid, 11 & eop 
 end
 
 // parser output
