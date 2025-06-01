@@ -32,7 +32,9 @@ module ptp_parser (
   input [ 7:0] ptp_msgid_mask,
 
   output reg        ptp_found,
-  output reg [31:0] ptp_infor
+  output reg [31:0] ptp_infor,
+  output reg [47:0] msg_ts_sec,
+  output reg [31:0] msg_ts_ns
 );
 
 // constant values
@@ -52,14 +54,17 @@ parameter c_ptp4_port_2 = 16'h0140;
 
 // buffer data input
 reg [31:0] int_data_d1;
+reg        int_valid_d1;
 always @(posedge rst or posedge clk) begin
   if (rst) begin
     int_data_d1  <= 32'h00000000;
+    int_valid_d1 <= 1'h0;
   end
   else begin
     if (int_valid) begin
       int_data_d1  <= int_data;
     end
+    int_valid_d1 <= int_valid;
   end
 end
 
@@ -195,18 +200,25 @@ reg [31:0] ptp_data;
 reg [ 3:0] ptp_msgid;
 reg [15:0] ptp_seqid;
 reg [11:0] ptp_cksum;
+reg [47:0] ptp_ts_sec;
+reg [31:0] ptp_ts_nsec;
+
 always @(posedge rst or posedge clk) begin
   if (rst) begin
-    ptp_data  <= 32'd0;
-    ptp_msgid <= 4'd0;
-    ptp_seqid <= 16'd0;
-    ptp_cksum <= 12'd0;
+    ptp_data    <= 32'd0;
+    ptp_msgid   <= 4'd0;
+    ptp_seqid   <= 16'd0;
+    ptp_cksum   <= 12'd0;
+    ptp_ts_sec  <= 48'd0;
+    ptp_ts_nsec <= 32'd0; 
   end
   else if (int_valid && int_sop) begin
     ptp_data  <= 32'd0;
     ptp_msgid <= 4'd0;
     ptp_seqid <= 16'd0;
     ptp_cksum <= 12'd0;
+    ptp_ts_sec  <= 48'd0;
+    ptp_ts_nsec <= 32'd0;
   end
   else begin
     // get PTP identification information as additional information to Timestamp
@@ -226,6 +238,12 @@ always @(posedge rst or posedge clk) begin
       ptp_cksum <= ptp_data[31:24] + ptp_data[23:16] + ptp_data[15: 8] + ptp_data[ 7: 0] + ptp_cksum;
     if (int_valid && ptp_cnt==10'd8)
       ptp_cksum <= ptp_data[31:24] + ptp_data[23:16]                                     + ptp_cksum;
+    if (int_valid && ptp_cnt==10'd9)
+      ptp_ts_sec[47:32] <= ptp_data[15:0];
+    if (int_valid && ptp_cnt==10'd10)
+      ptp_ts_sec[31:0] <= ptp_data;
+    if (ptp_cnt==10'd11 && int_valid_d1)
+      ptp_ts_nsec <= ptp_data;
   end // add save of timestamp in msg if 9 & valid, 10 & valid, 11 & eop 
 end
 
@@ -234,14 +252,20 @@ always @(posedge rst or posedge clk) begin
   if (rst) begin
     ptp_found <=  1'b0;
     ptp_infor <= 32'd0;
+    msg_ts_sec <= 48'd0;
+    msg_ts_ns <= 32'd0;
   end
   else if (int_valid && int_sop) begin
     ptp_found <=  1'b0;
     ptp_infor <= 32'd0;
+    msg_ts_sec <= 48'd0;
+    msg_ts_ns <= 32'd0;
   end
-  else if (int_valid && ptp_cnt==10'd9) begin
+  else if (int_eop && ptp_cnt==10'd11) begin
     ptp_found <=  ptp_event;
     ptp_infor <= {ptp_msgid, ptp_cksum, ptp_seqid};  // 4+12+16
+    msg_ts_sec <= ptp_ts_sec;
+    msg_ts_ns <= ptp_ts_nsec;
   end
 end
 

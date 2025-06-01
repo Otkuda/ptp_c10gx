@@ -73,11 +73,13 @@ wire rx_q_rd_en;
 wire [  7:0] rx_q_ptp_msgid_mask;
 wire [  7:0] rx_q_stat;
 wire [127:0] rx_q_data;
+wire [ 80:0] rx_ts_data;
 wire tx_q_rst, tx_q_clk;
 wire tx_q_rd_en;
 wire [  7:0] tx_q_ptp_msgid_mask;
 wire [  7:0] tx_q_stat;
 wire [127:0] tx_q_data;
+wire [ 80:0] tx_ts_data;
 
 regs u_rgs
 (
@@ -107,12 +109,14 @@ regs u_rgs
   .rx_q_ptp_msgid_mask_out(rx_q_ptp_msgid_mask),
   .rx_q_stat_in(rx_q_stat),
   .rx_q_data_in(rx_q_data),
+  .rx_q_ts_in(rx_ts_data),
   .tx_q_rst_out(tx_q_rst),
   .tx_q_rd_clk_out(tx_q_clk),
   .tx_q_rd_en_out(tx_q_rd_en),
   .tx_q_ptp_msgid_mask_out(tx_q_ptp_msgid_mask),
   .tx_q_stat_in(tx_q_stat),
-  .tx_q_data_in(tx_q_data)
+  .tx_q_data_in(tx_q_data),
+  .tx_q_ts_in(tx_ts_data)
 );
 
 rtc u_rtc
@@ -149,7 +153,8 @@ tsu u_rx_tsu
   .q_rd_clk(rx_q_clk),
   .q_rd_en(rx_q_rd_en),
   .q_rd_stat(rx_q_stat),
-  .q_rd_data(rx_q_data)
+  .q_rd_data(rx_q_data),
+  .q_ts_data(rx_ts_data)
 );
 
 tsu u_tx_tsu
@@ -166,7 +171,8 @@ tsu u_tx_tsu
   .q_rd_clk(tx_q_clk),
   .q_rd_en(tx_q_rd_en),
   .q_rd_stat(tx_q_stat),
-  .q_rd_data(tx_q_data)
+  .q_rd_data(tx_q_data),
+  .q_ts_data(tx_ts_data)
 );
 
 endmodule

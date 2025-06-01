@@ -4,6 +4,8 @@ output_files
 qdb
 tmp-clearbox
 work
+ptp_parser
+__pycache__
 *.history
 *.wlf
 *.bak

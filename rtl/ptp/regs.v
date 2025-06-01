@@ -49,13 +49,15 @@ module regs (
   output [  7:0] rx_q_ptp_msgid_mask_out,
   input  [  7:0] rx_q_stat_in,
   input  [127:0] rx_q_data_in,
+  input  [ 79:0] rx_q_ts_in,
   // tx tsu interface
   output         tx_q_rst_out,
   output         tx_q_rd_clk_out,
   output         tx_q_rd_en_out,
   output [  7:0] tx_q_ptp_msgid_mask_out,
   input  [  7:0] tx_q_stat_in,
-  input  [127:0] tx_q_data_in
+  input  [127:0] tx_q_data_in,
+  input  [ 79:0] tx_q_ts_in // TODO add registers !!!
 );
 
 parameter const_00 = 8'h00;
