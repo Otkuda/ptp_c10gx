@@ -25,8 +25,8 @@ OBJCOPY:=	$(CROSS_COMPILE)objcopy
 OBJDUMP:=	$(CROSS_COMPILE)objdump
 SIZE:=		$(CROSS_COMPILE)size
 TARGET:=	main
-CCFLAGS:=	-march=rv32id -Wl,-Bstatic,-T,sections.lds,--strip-debug -ffreestanding -nostdlib
-ASFLAGS:=	-march=rv32id  -Wa,-adhln -g -fno-asynchronous-unwind-tables 
+CCFLAGS:=	-march=rv32imd -Wl,-Bstatic,-T,sections.lds,--strip-debug -ffreestanding -nostdlib
+ASFLAGS:=	-march=rv32imd  -Wa,-adhln -g -fno-asynchronous-unwind-tables 
 DEPS:=		$(TARGET).c start.S irq.c print.c
 CLEANTARGET:= elf out bin lst mif o
 B2MIF	:= $(TOOLS_DIR)bin2mif.py
@@ -35,7 +35,7 @@ B2MIF	:= $(TOOLS_DIR)bin2mif.py
 all: $(TARGET).mif
 
 %.o: %.c
-	$(CC) -march=rv32id -ffreestanding -nostdlib -c $<
+	$(CC) -march=rv32imd -ffreestanding -nostdlib -c $<
 
 $(TARGET).mif : $(TARGET).bin
 	$(PYTHON) $(B2MIF) $^ $@

@@ -78,7 +78,9 @@ module top_soc (
 		.ENABLE_IRQ_TIMER	(1),
 		.PROGADDR_RESET	(RESET_ADDR),
 		.PROGADDR_IRQ		(IRQ_ADDR),
-		.STACKADDR			(STACK_ADDR)
+		.STACKADDR			(STACK_ADDR),
+		.ENABLE_DIV(1),
+		.ENABLE_MUL(1)
 	) cpu (
 		.clk		(clock_main),
 		.resetn	(rst_n),

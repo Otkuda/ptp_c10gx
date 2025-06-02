@@ -38,7 +38,8 @@ module tsu (
     input         q_rd_clk,
     input         q_rd_en,
     output [  7:0] q_rd_stat,
-    output [127:0] q_rd_data  // null_16bit + timeStamp1s_48bit + timeStamp1ns_32bit + msgId_4bit + ckSum_12bit + seqId_16bit 
+    output [127:0] q_rd_data,  // null_16bit + timeStamp1s_48bit + timeStamp1ns_32bit + msgId_4bit + ckSum_12bit + seqId_16bit 
+    output [79:0]  q_ts_data
 );
 
 // mii to gmii converter
@@ -210,8 +211,8 @@ always @(posedge rst or posedge rtc_timer_clk) begin
       rtc_time_stamp <= rtc_timer_in;
 end
 reg ts_ack, ts_ack_clr;
-always @(posedge ts_ack_clr or posedge rtc_timer_clk) begin
-  if (ts_ack_clr)
+always @(posedge ts_ack_clr or posedge rtc_timer_clk or posedge rst) begin
+  if (ts_ack_clr || rst)
     ts_ack <= 1'b0;
   else
     if (ts_req_d2 & !ts_req_d3)
@@ -305,7 +306,7 @@ end
 reg [31:0] int_data_d1;
 reg        int_valid_d1;
 reg        int_sop_d1;
-reg        int_eop_d1;
+reg        int_eop_d1, int_eop_d2;
 reg [ 1:0] int_mod_d1;
 always @(posedge rst or posedge gmii_clk) begin
   if (rst) begin
@@ -323,6 +324,7 @@ always @(posedge rst or posedge gmii_clk) begin
       int_valid_d1 <= int_valid;
       int_sop_d1   <= int_sop;
       int_eop_d1   <= int_eop;
+      int_eop_d2   <= int_eop_d1;
   end
 end
 
@@ -330,6 +332,9 @@ end
 // works at 1/4 gmii_clk frequency, needs multicycle timing constraint
 wire        ptp_found;
 wire [31:0] ptp_infor;
+wire [47:0] msg_ts_sec;
+wire [31:0] msg_ts_ns;
+
 ptp_parser parser(
   .clk(gmii_clk),
   .rst(rst),
@@ -340,18 +345,26 @@ ptp_parser parser(
   .int_mod(int_mod_d1),
   .ptp_msgid_mask(ptp_msgid_mask),
   .ptp_found(ptp_found),
-  .ptp_infor(ptp_infor)
+  .ptp_infor(ptp_infor),
+  .msg_ts_ns(msg_ts_ns),
+  .msg_ts_sec(msg_ts_sec)
 );
 
 // ptp time stamp dcfifo
 wire q_wr_clk = gmii_clk;
-wire q_wr_en = ptp_found && int_eop_d1;
+wire q_wr_en = ptp_found && int_eop_d2;
 wire [127:0] q_wr_data = {16'd0, tsu_time_stamp, ptp_infor};  // 16+80+32 bit
+wire [79:0] msg_timestamp = {msg_ts_sec, msg_ts_ns};
 wire [3:0] q_wrusedw;
 wire [3:0] q_rdusedw;
 wire q_wr_full;
 wire q_rd_empty;
 
+wire q_ts_wr_full;
+wire q_ts_rd_empty;
+wire [3:0] q_ts_wrusedw;
+wire [3:0] q_ts_rdusedw;
+ 
 ptp_queue queue(
   .aclr(q_rst),
 
@@ -366,6 +379,22 @@ ptp_queue queue(
   .q(q_rd_data),
   .rdempty(q_rd_empty),
   .rdusedw(q_rdusedw)
+);
+
+ts_queue ts_queue_i(
+  .aclr(q_rst),
+
+  .wrclk(q_wr_clk),
+  .wrreq(q_wr_en && !q_ts_wr_full),  // write with overflow protection
+  .data(msg_timestamp),
+  .wrfull(q_ts_wr_full),
+  .wrusedw(q_ts_wrusedw),
+
+  .rdclk(q_rd_clk),
+  .rdreq(q_rd_en && !q_ts_rd_empty),  // read with underflow protection
+  .q(q_ts_data),
+  .rdempty(q_ts_rd_empty),
+  .rdusedw(q_ts_rdusedw)
 );
 
 assign q_rd_stat = {4'd0, q_rdusedw};

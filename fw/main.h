@@ -53,12 +53,18 @@
 #define TSU_RXQUE_DATA_HL (* (volatile uint32_t *) 0x03000054)
 #define TSU_RXQUE_DATA_LH (* (volatile uint32_t *) 0x03000058)
 #define TSU_RXQUE_DATA_LL (* (volatile uint32_t *) 0x0300005C)
+#define TSU_RXQUE_TS_SECH (* (volatile uint32_t *) 0x03000080)
+#define TSU_RXQUE_TS_SECL (* (volatile uint32_t *) 0x03000084)
+#define TSU_RXQUE_TS_NSEC (* (volatile uint32_t *) 0x03000088)
 #define TSU_TXCTRL        (* (volatile uint32_t *) 0x03000060)
 #define TSU_TXQUE_STATUS  (* (volatile uint32_t *) 0x03000064)
 #define TSU_TXQUE_DATA_HH (* (volatile uint32_t *) 0x03000070)
 #define TSU_TXQUE_DATA_HL (* (volatile uint32_t *) 0x03000074)
 #define TSU_TXQUE_DATA_LH (* (volatile uint32_t *) 0x03000078)
 #define TSU_TXQUE_DATA_LL (* (volatile uint32_t *) 0x0300007C)
+#define TSU_TXQUE_TS_SECH (* (volatile uint32_t *) 0x0300008C)
+#define TSU_TXQUE_TS_SECL (* (volatile uint32_t *) 0x03000090)
+#define TSU_TXQUE_TS_NSEC (* (volatile uint32_t *) 0x03000094)
 // define TSU control values
 #define TSU_SET_CTRL_0  0x00
 #define TSU_GET_RXQUE   0x01
@@ -95,7 +101,6 @@
 #define DELAY_REQ 0x1
 #define DELAY_RESP 0x9
 typedef struct ts {
-    int16_t sec_h;
     int32_t sec_l;
     int32_t nsec; 
 } timestamp;
