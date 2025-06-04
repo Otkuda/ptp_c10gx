@@ -5,13 +5,13 @@
 `timescale 1 ps / 1 ps
 module myROM (
 		output wire [31:0] q,       //       q.dataout, Data output of the memory.The q port is required if the operation_mode parameter is set to any of the following values:SINGLE_PORT,DUAL_PORT,BIDIR_DUAL_PORT,QUAD_PORT
-		input  wire [9:0]  address, // address.address, Adress input of the memory.The address signal is required for all operation modes.
+		input  wire [10:0] address, // address.address, Adress input of the memory.The address signal is required for all operation modes.
 		input  wire        clock    //   clock.clk,     Memory clock, refer to user guide for specific details
 	);
 
-	myROM_rom_1port_2021_ydz5faq rom_1port_0 (
+	myROM_rom_1port_2021_hc3khfy rom_1port_0 (
 		.q       (q),       //  output,  width = 32,       q.dataout
-		.address (address), //   input,  width = 10, address.address
+		.address (address), //   input,  width = 11, address.address
 		.clock   (clock)    //   input,   width = 1,   clock.clk
 	);
 

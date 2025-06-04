@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="myRAM" kind="myRAM" version="1.0" fabric="QSYS">
  <!-- Format version 24.3 212 (Future versions may contain additional information.) -->
- <!-- 2025.05.16.13:36:14 -->
+ <!-- 2025.06.03.12:19:52 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
@@ -108,7 +108,7 @@
    name="ram_1port_0"
    kind="ram_1port"
    version="20.1.1"
-   entity="myRAM_ram_1port_2011_wsr2yiq"
+   entity="myRAM_ram_1port_2011_phioydi"
    library="ram_1port_2011"
    path="ram_1port_0"
    hpath="ram_1port_0"
@@ -318,7 +318,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_NUMWORDS_A">
    <type>int</type>
-   <value>256</value>
+   <value>512</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -406,7 +406,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_WIDTHAD_A">
    <type>int</type>
-   <value>8</value>
+   <value>9</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -622,7 +622,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>address</name>
     <direction>Input</direction>
-    <width>8</width>
+    <width>9</width>
     <role>address</role>
    </port>
   </interface>

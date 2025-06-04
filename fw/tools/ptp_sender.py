@@ -1,6 +1,6 @@
 from scapy.all import *
 #from eth_scapy_ieee1588 import *
-
+import time
 
 IFACE = "Intel(R) Ethernet Connection (5) I219-LM"
 SRC_MAC = "a4:4c:c8:59:7c:3c"
@@ -55,10 +55,14 @@ def main():
     fu_pkt = eth / ptp_fu
     resp = eth / myieee1588(messageType=9, control=9, timestampNSec=0xb615f68)
 
-    sendp(sync_pkt, iface=interface)
-    sendp(fu_pkt, iface=interface)
-    sniff(1, prn=lambda x: print(x), iface=interface)
-    sendp(resp, iface=interface)
+    for i in range(5):
+        t = time.time_ns()
+        sendp(eth / myieee1588(messageType=0, control=0, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
+        sendp(eth / myieee1588(messageType=8, control=8, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
+        sniff(1, prn=lambda x: print(x), iface=interface)
+        t = time.time_ns()
+        sendp(eth / myieee1588(messageType=9, control=9, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
+        time.sleep(0.8)
 
 def find_fu(x):
     resp = Ether(src="a4:4c:c8:59:7c:3c") / myieee1588(messageType=1, control=1)

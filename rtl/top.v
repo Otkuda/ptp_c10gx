@@ -33,9 +33,9 @@ module top_soc (
 	
 	// ~~~~~~~~~~  memory map ~~~~~~~~~~~~~~~~	sync with sections.lds, update sp in start.s
 	localparam ROM_ADDR		=	32'h0000_0000;
-	localparam ROM_ADDR_END	=	32'h0000_0FFF;
-	localparam RAM_ADDR		=	32'h0000_1000;
-	localparam RAM_ADDR_END	=	32'h0000_13ff;
+	localparam ROM_ADDR_END	=	32'h0000_1FFF;
+	localparam RAM_ADDR		=	32'h0000_2000;
+	localparam RAM_ADDR_END	=	32'h0000_27ff;
 
 	localparam LEDS_ADDR		=	32'h0200_0000;
 	localparam SEG1_ADDR		=	32'h0200_2000;
@@ -100,10 +100,10 @@ module top_soc (
 
 	// ========================= ROM =========================
 	// start addr 	: [0000_0000]
-	// end_addr		: [0000_0FFF]
+	// end_addr		: [0000_1FFF]
 	wire [31:0] romout;
 	myROM rom (
-		.address	(mem_addr[11:2]),	// 1024 words x 32 bits
+		.address	(mem_addr[12:2]),	// 1024 words x 32 bits
 		.clock	(clock_main),
 		.q			(romout)
 	);
@@ -124,14 +124,14 @@ module top_soc (
 
 		
 	// ========================= RAM =========================
-	// start addr 	: [0000_1000]
-	// end_addr		: [0000_13FF]
+	// start addr 	: [0000_2000]
+	// end_addr		: [0000_23FF]
 	reg ram_ready;
 	reg ram_wren;
 	wire [31:0] ram_out;
 
 	myRAM ram (					// to debug with in-system memory content editor
-		.address	(mem_addr[9:2]),
+		.address	(mem_addr[10:2]),
 		.byteena (mem_wstrb),
 		.clock	(clock_main),
 		.data		(mem_wdata),

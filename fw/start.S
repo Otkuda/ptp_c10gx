@@ -136,7 +136,7 @@ start:
 	/* zero-initialize all registers */
 
 	addi x1, zero, 0
-	li x2, 0x1400		# stack pointer update
+	li x2, 0x2800		# stack pointer update
 	addi x3, zero, 0
 	addi x4, zero, 0
 	addi x5, zero, 0

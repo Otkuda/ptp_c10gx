@@ -1,7 +1,7 @@
 	component myROM is
 		port (
 			q       : out std_logic_vector(31 downto 0);                    -- dataout
-			address : in  std_logic_vector(9 downto 0)  := (others => 'X'); -- address
+			address : in  std_logic_vector(10 downto 0) := (others => 'X'); -- address
 			clock   : in  std_logic                     := 'X'              -- clk
 		);
 	end component myROM;

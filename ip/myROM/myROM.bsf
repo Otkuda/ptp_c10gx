@@ -27,8 +27,8 @@ on the Quartus Prime software download page.
 	(port
 		(pt 0 76)
 		(input)
-		(text "address[9..0]" (rect 0 0 51 12)(font "SansSerif" (font_size 8)))
-		(text "address[9..0]" (rect 4 65 82 76)(font "SansSerif" (font_size 8)))
+		(text "address[10..0]" (rect 0 0 55 12)(font "SansSerif" (font_size 8)))
+		(text "address[10..0]" (rect 4 65 88 76)(font "SansSerif" (font_size 8)))
 		(line (pt 0 76)(pt 85 76)(line_width 3))
 	)
 	(port

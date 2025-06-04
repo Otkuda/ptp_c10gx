@@ -1,7 +1,7 @@
 MEMORY
 {
-    ROM (rx)      : ORIGIN = 0x00000000, LENGTH = 0x1000 /* entire ROM, 4096 bytes */
-    RAM (xrw)     : ORIGIN = 0x00001000, LENGTH = 0x0400 /*  1024 bytes  */
+    ROM (rx)      : ORIGIN = 0x00000000, LENGTH = 0x2000 /* entire ROM, 4096 bytes */
+    RAM (xrw)     : ORIGIN = 0x00002000, LENGTH = 0x0800 /*  1024 bytes  */
 }
 
 SECTIONS {

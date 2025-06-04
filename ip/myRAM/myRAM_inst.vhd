@@ -2,7 +2,7 @@
 		port (
 			data    : in  std_logic_vector(31 downto 0) := (others => 'X'); -- datain
 			q       : out std_logic_vector(31 downto 0);                    -- dataout
-			address : in  std_logic_vector(7 downto 0)  := (others => 'X'); -- address
+			address : in  std_logic_vector(8 downto 0)  := (others => 'X'); -- address
 			wren    : in  std_logic                     := 'X';             -- wren
 			clock   : in  std_logic                     := 'X';             -- clk
 			byteena : in  std_logic_vector(3 downto 0)  := (others => 'X')  -- byte_enable

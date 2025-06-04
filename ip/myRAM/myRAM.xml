@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2025.05.16.13:36:14"
+ date="2025.06.03.12:19:52"
  outputDirectory="C:/Users/Kirill/Documents/picorv_c10gx/ip/myRAM/">
  <perimeter>
   <parameter
@@ -73,7 +73,7 @@
    <property name="associatedClock" value="" />
    <property name="associatedReset" value="" />
    <property name="prSafe" value="false" />
-   <port name="address" direction="input" role="address" width="8" />
+   <port name="address" direction="input" role="address" width="9" />
   </interface>
   <interface name="wren" kind="conduit" start="0">
    <property name="associatedClock" value="" />
@@ -125,16 +125,16 @@
   </childSourceFiles>
   <messages>
    <message level="Info" culprit="myRAM">"Generating: myRAM"</message>
-   <message level="Info" culprit="myRAM">"Generating: myRAM_ram_1port_2011_wsr2yiq"</message>
+   <message level="Info" culprit="myRAM">"Generating: myRAM_ram_1port_2011_phioydi"</message>
    <message level="Info" culprit="intel_mce_inst">"Generating: intel_mce_inst"</message>
-   <message level="Info" culprit="myRAM">"Generating: myRAM_ram_1port_intel_mce_2011_f6dnnqq"</message>
+   <message level="Info" culprit="myRAM">"Generating: myRAM_ram_1port_intel_mce_2011_i6ey5bq"</message>
    <message level="Info" culprit="myRAM">"Generating: sld_mod_ram_rom_top"</message>
   </messages>
  </entity>
- <entity kind="ram_1port" version="20.1.1" name="myRAM_ram_1port_2011_wsr2yiq">
+ <entity kind="ram_1port" version="20.1.1" name="myRAM_ram_1port_2011_phioydi">
   <parameter name="GUI_CLOCK_ENABLE_INPUT_A" value="false" />
   <parameter name="GUI_AclrData" value="false" />
-  <parameter name="GUI_NUMWORDS_A" value="256" />
+  <parameter name="GUI_NUMWORDS_A" value="512" />
   <parameter name="DEVICE_FAMILY" value="Cyclone 10 GX" />
   <parameter name="GUI_RAM_BLOCK_TYPE" value="Auto" />
   <parameter name="GUI_SingleClock" value="0" />
@@ -164,7 +164,7 @@
   <parameter name="GUI_BYTE_WIDTH" value="4" />
   <parameter name="GUI_WRCONTROL_ACLR_A" value="false" />
   <parameter name="GUI_AclrOutput" value="false" />
-  <parameter name="GUI_WIDTHAD_A" value="8" />
+  <parameter name="GUI_WIDTHAD_A" value="9" />
   <parameter name="GUI_ADDRESSSTALL_A" value="false" />
   <parameter name="GUI_FILE_REFERENCE" value="0" />
   <parameter name="GUI_BYTE_ENABLE" value="true" />
@@ -174,12 +174,12 @@
   <parameter name="GUI_BlankMemory" value="0" />
   <generatedFiles>
    <file
-       path="C:\Users\Kirill\Documents\picorv_c10gx\ip\myRAM\ram_1port_2011\synth\myRAM_ram_1port_2011_wsr2yiq.v"
+       path="C:\Users\Kirill\Documents\picorv_c10gx\ip\myRAM\ram_1port_2011\synth\myRAM_ram_1port_2011_phioydi.v"
        attributes="" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="C:\Users\Kirill\Documents\picorv_c10gx\ip\myRAM\ram_1port_2011\synth\myRAM_ram_1port_2011_wsr2yiq.v"
+       path="C:\Users\Kirill\Documents\picorv_c10gx\ip\myRAM\ram_1port_2011\synth\myRAM_ram_1port_2011_phioydi.v"
        attributes="" />
   </childGeneratedFiles>
   <sourceFiles>
@@ -192,18 +192,18 @@
   </childSourceFiles>
   <instantiator instantiator="myRAM" as="ram_1port_0" />
   <messages>
-   <message level="Info" culprit="myRAM">"Generating: myRAM_ram_1port_2011_wsr2yiq"</message>
+   <message level="Info" culprit="myRAM">"Generating: myRAM_ram_1port_2011_phioydi"</message>
    <message level="Info" culprit="intel_mce_inst">"Generating: intel_mce_inst"</message>
-   <message level="Info" culprit="myRAM">"Generating: myRAM_ram_1port_intel_mce_2011_f6dnnqq"</message>
+   <message level="Info" culprit="myRAM">"Generating: myRAM_ram_1port_intel_mce_2011_i6ey5bq"</message>
    <message level="Info" culprit="myRAM">"Generating: sld_mod_ram_rom_top"</message>
   </messages>
  </entity>
  <entity
    kind="ram_1port_intel_mce"
    version="20.1.1"
-   name="myRAM_ram_1port_intel_mce_2011_f6dnnqq">
+   name="myRAM_ram_1port_intel_mce_2011_i6ey5bq">
   <parameter name="IS_DATA_IN_RAM" value="1" />
-  <parameter name="NUMWORDS" value="256" />
+  <parameter name="NUMWORDS" value="512" />
   <parameter name="IS_READABLE" value="1" />
   <parameter name="FIFO_SIZE" value="16" />
   <parameter name="SLD_NODE_INFO" value="270036480" />
@@ -215,17 +215,17 @@
   <parameter name="WIDTH_WORD" value="32" />
   <parameter name="NODE_NAME_DEC" value="1380011313" />
   <parameter name="LATENCY" value="1" />
-  <parameter name="WIDTHAD" value="8" />
+  <parameter name="WIDTHAD" value="9" />
   <parameter name="SHIFT_COUNT_BITS" value="5" />
   <parameter name="FIFO_SIZE_DELAY" value="5" />
   <generatedFiles>
    <file
-       path="C:\Users\Kirill\Documents\picorv_c10gx\ip\myRAM\ram_1port_2011\synth\myRAM_ram_1port_intel_mce_2011_f6dnnqq.v"
+       path="C:\Users\Kirill\Documents\picorv_c10gx\ip\myRAM\ram_1port_2011\synth\myRAM_ram_1port_intel_mce_2011_i6ey5bq.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="C:\Users\Kirill\Documents\picorv_c10gx\ip\myRAM\ram_1port_2011\synth\myRAM_ram_1port_intel_mce_2011_f6dnnqq.v"
+       path="C:\Users\Kirill\Documents\picorv_c10gx\ip\myRAM\ram_1port_2011\synth\myRAM_ram_1port_intel_mce_2011_i6ey5bq.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </childGeneratedFiles>
   <sourceFiles/>
@@ -233,15 +233,15 @@
    <file
        path="C:/intelfpga_pro/24.3/ip/altera/sld/jtag/intel_mce/intel_mce_hw.tcl" />
   </childSourceFiles>
-  <instantiator instantiator="myRAM_ram_1port_2011_wsr2yiq" as="intel_mce_inst" />
+  <instantiator instantiator="myRAM_ram_1port_2011_phioydi" as="intel_mce_inst" />
   <messages>
-   <message level="Info" culprit="myRAM">"Generating: myRAM_ram_1port_intel_mce_2011_f6dnnqq"</message>
+   <message level="Info" culprit="myRAM">"Generating: myRAM_ram_1port_intel_mce_2011_i6ey5bq"</message>
    <message level="Info" culprit="myRAM">"Generating: sld_mod_ram_rom_top"</message>
   </messages>
  </entity>
  <entity kind="intel_mce" version="1.0.1" name="sld_mod_ram_rom_top">
   <parameter name="IS_DATA_IN_RAM" value="1" />
-  <parameter name="NUMWORDS" value="256" />
+  <parameter name="NUMWORDS" value="512" />
   <parameter name="IS_READABLE" value="1" />
   <parameter name="FIFO_SIZE" value="16" />
   <parameter name="SLD_NODE_INFO" value="270036480" />
@@ -253,7 +253,7 @@
   <parameter name="WIDTH_WORD" value="32" />
   <parameter name="NODE_NAME_DEC" value="1380011313" />
   <parameter name="LATENCY" value="1" />
-  <parameter name="WIDTHAD" value="8" />
+  <parameter name="WIDTHAD" value="9" />
   <parameter name="SHIFT_COUNT_BITS" value="5" />
   <parameter name="FIFO_SIZE_DELAY" value="5" />
   <generatedFiles>
@@ -272,7 +272,7 @@
   </sourceFiles>
   <childSourceFiles/>
   <instantiator
-     instantiator="myRAM_ram_1port_intel_mce_2011_f6dnnqq"
+     instantiator="myRAM_ram_1port_intel_mce_2011_i6ey5bq"
      as="intel_mce_inst" />
   <messages>
    <message level="Info" culprit="myRAM">"Generating: sld_mod_ram_rom_top"</message>

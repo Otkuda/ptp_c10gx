@@ -7,7 +7,7 @@
  <global>
   <pin name="data[31..0]" direction="input" scope="external" />
   <pin name="q[31..0]" direction="output" scope="external" />
-  <pin name="address[7..0]" direction="input" scope="external" />
+  <pin name="address[8..0]" direction="input" scope="external" />
   <pin name="wren" direction="input" scope="external" />
   <pin name="clock" direction="input" scope="external" />
   <pin name="byteena[3..0]" direction="input" scope="external" />

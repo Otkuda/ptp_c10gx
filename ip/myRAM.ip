@@ -362,7 +362,7 @@ https://fpgasoftware.intel.com/eula.-->
           <ipxact:vectors>
             <ipxact:vector>
               <ipxact:left>0</ipxact:left>
-              <ipxact:right>7</ipxact:right>
+              <ipxact:right>8</ipxact:right>
             </ipxact:vector>
           </ipxact:vectors>
           <ipxact:wireTypeDefs>
@@ -554,7 +554,7 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="GUI_NUMWORDS_A" type="int">
           <ipxact:name>GUI_NUMWORDS_A</ipxact:name>
           <ipxact:displayName>How many words of memory?</ipxact:displayName>
-          <ipxact:value>256</ipxact:value>
+          <ipxact:value>512</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="GUI_MAXIMUM_DEPTH" type="string">
           <ipxact:name>GUI_MAXIMUM_DEPTH</ipxact:name>

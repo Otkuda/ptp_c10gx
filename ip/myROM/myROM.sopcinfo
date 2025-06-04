@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="myROM" kind="myROM" version="1.0" fabric="QSYS">
  <!-- Format version 24.3 212 (Future versions may contain additional information.) -->
- <!-- 2025.05.19.12:23:05 -->
+ <!-- 2025.06.03.09:58:17 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
@@ -108,7 +108,7 @@
    name="rom_1port_0"
    kind="rom_1port"
    version="20.2.1"
-   entity="myROM_rom_1port_2021_ydz5faq"
+   entity="myROM_rom_1port_2021_hc3khfy"
    library="rom_1port_2021"
    path="rom_1port_0"
    hpath="rom_1port_0"
@@ -254,7 +254,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_NUMWORDS_A">
    <type>int</type>
-   <value>1024</value>
+   <value>2048</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -318,7 +318,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_WIDTHAD_A">
    <type>int</type>
-   <value>10</value>
+   <value>11</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -334,7 +334,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_RESOURCE_USAGE">
    <type>java.lang.String</type>
-   <value>2 M20K</value>
+   <value>4 M20K</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -468,7 +468,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>address</name>
     <direction>Input</direction>
-    <width>10</width>
+    <width>11</width>
     <role>address</role>
    </port>
   </interface>

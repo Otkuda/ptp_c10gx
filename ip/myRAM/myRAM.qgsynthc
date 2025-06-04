@@ -110,7 +110,7 @@
           </parameter>
           <parameter>
             <name>GUI_NUMWORDS_A</name>
-            <value>256</value>
+            <value>512</value>
           </parameter>
           <parameter>
             <name>GUI_OPTIMIZATION_OPTION</name>
@@ -158,7 +158,7 @@
           </parameter>
           <parameter>
             <name>GUI_WIDTHAD_A</name>
-            <value>8</value>
+            <value>9</value>
           </parameter>
           <parameter>
             <name>GUI_WIDTH_A</name>
@@ -181,7 +181,7 @@
         <className>ram_1port</className>
         <version>20.1.1</version>
         <name>ram_1port_0</name>
-        <uniqueName>myRAM_ram_1port_2011_wsr2yiq</uniqueName>
+        <uniqueName>myRAM_ram_1port_2011_phioydi</uniqueName>
         <nonce>0</nonce>
         <incidentConnections></incidentConnections>
         <path>myRAM.ram_1port_0</path>
@@ -233,7 +233,7 @@
               </parameter>
               <parameter>
                 <name>NUMWORDS</name>
-                <value>256</value>
+                <value>512</value>
               </parameter>
               <parameter>
                 <name>QUEUE_SIZE_WIDTH</name>
@@ -249,7 +249,7 @@
               </parameter>
               <parameter>
                 <name>WIDTHAD</name>
-                <value>8</value>
+                <value>9</value>
               </parameter>
               <parameter>
                 <name>WIDTH_WORD</name>
@@ -260,7 +260,7 @@
             <className>ram_1port_intel_mce</className>
             <version>20.1.1</version>
             <name>intel_mce_inst</name>
-            <uniqueName>myRAM_ram_1port_intel_mce_2011_f6dnnqq</uniqueName>
+            <uniqueName>myRAM_ram_1port_intel_mce_2011_i6ey5bq</uniqueName>
             <nonce>0</nonce>
             <incidentConnections></incidentConnections>
             <path>myRAM.ram_1port_0.intel_mce_inst</path>
@@ -312,7 +312,7 @@
                   </parameter>
                   <parameter>
                     <name>NUMWORDS</name>
-                    <value>256</value>
+                    <value>512</value>
                   </parameter>
                   <parameter>
                     <name>QUEUE_SIZE_WIDTH</name>
@@ -328,7 +328,7 @@
                   </parameter>
                   <parameter>
                     <name>WIDTHAD</name>
-                    <value>8</value>
+                    <value>9</value>
                   </parameter>
                   <parameter>
                     <name>WIDTH_WORD</name>

@@ -82,7 +82,7 @@
           </parameter>
           <parameter>
             <name>GUI_NUMWORDS_A</name>
-            <value>1024</value>
+            <value>2048</value>
           </parameter>
           <parameter>
             <name>GUI_OPTIMIZATION_OPTION</name>
@@ -94,7 +94,7 @@
           </parameter>
           <parameter>
             <name>GUI_RESOURCE_USAGE</name>
-            <value>2 M20K</value>
+            <value>4 M20K</value>
           </parameter>
           <parameter>
             <name>GUI_RegAddr</name>
@@ -118,7 +118,7 @@
           </parameter>
           <parameter>
             <name>GUI_WIDTHAD_A</name>
-            <value>10</value>
+            <value>11</value>
           </parameter>
           <parameter>
             <name>GUI_WIDTH_A</name>
@@ -133,7 +133,7 @@
         <className>rom_1port</className>
         <version>20.2.1</version>
         <name>rom_1port_0</name>
-        <uniqueName>myROM_rom_1port_2021_ydz5faq</uniqueName>
+        <uniqueName>myROM_rom_1port_2021_hc3khfy</uniqueName>
         <nonce>0</nonce>
         <incidentConnections></incidentConnections>
         <path>myROM.rom_1port_0</path>
