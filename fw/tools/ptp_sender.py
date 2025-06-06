@@ -48,21 +48,24 @@ def main():
     mac_addr = "a4:4c:c8:59:7c:3c"
     interface = ifaces[interface_index]
 
-    eth = Ether(src=mac_addr)
+    eth = Ether(src=mac_addr, dst="01:1b:19:00:00:00")
     ptp_sync = myieee1588(messageType=0, control=0)
     ptp_fu = myieee1588(messageType=8, control=8, timestampNSec=0xb165c48)
     sync_pkt = eth / ptp_sync
     fu_pkt = eth / ptp_fu
     resp = eth / myieee1588(messageType=9, control=9, timestampNSec=0xb615f68)
 
-    for i in range(5):
-        t = time.time_ns()
-        sendp(eth / myieee1588(messageType=0, control=0, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
-        sendp(eth / myieee1588(messageType=8, control=8, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
-        sniff(1, prn=lambda x: print(x), iface=interface)
-        t = time.time_ns()
-        sendp(eth / myieee1588(messageType=9, control=9, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
-        time.sleep(0.8)
+    # for i in range(5):
+    t = time.time_ns()
+    sendp(eth / myieee1588(messageType=0x1, control=0x1, flags=0, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
+    # sendp(eth / myieee1588(messageType=8, control=8, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
+    # sniff(1, prn=lambda x: print(x), iface=interface, timeout=0.1)
+    # t = time.time_ns()
+    # sendp(eth / myieee1588(messageType=9, control=9, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
+    # time.sleep(0.8)
+    # t = time.time_ns()
+    # sendp(eth / myieee1588(messageType=0, control=0, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
+    # sendp(eth / myieee1588(messageType=8, control=8, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
 
 def find_fu(x):
     resp = Ether(src="a4:4c:c8:59:7c:3c") / myieee1588(messageType=1, control=1)

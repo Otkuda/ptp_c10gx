@@ -79,6 +79,12 @@ void get_local_time(timestamp *ts) {
 	RTC_CTRL = RTC_SET_CTRL_0;
 }
 
+void set_offset(timestamp *ts) {
+	RTC_ADJPER_L = ts->nsec;
+	RTC_ADJNUM = 1;
+
+}
+
 void set_local_time(timestamp *ts) {
 	RTC_TIME_SEC_L = ts->sec_l;
 	RTC_TIME_NSC_H = ts->nsec;
@@ -126,8 +132,9 @@ void printTimestamp(timestamp *ts) {
 
 uint16_t seq_id, sync_seq_id;
 uint8_t step;
+uint8_t update_rtt = 1;
 timestamp ts1, ts2, ts3, ts4;
-timestamp rtc_time;
+timestamp rtt, offset, rtc;
 
 void synchronize() {
 	uint32_t ptp_info;
@@ -202,18 +209,18 @@ void synchronize() {
 				break;
 		}
 	}
+	
 	subTime(&ts4, &ts4, &ts3);
-	subTime(&ts2, &ts2, &ts4);
-	div2Time(&ts2);
-	get_local_time(&rtc_time);
-	printTimestamp(&rtc_time);
-	subTime(&rtc_time, &rtc_time, &ts2);
-	printTimestamp(&ts2);
-	set_local_time(&rtc_time);
-	print_hex(RTC_TIME_SEC_L, 8);
-	print_hex(RTC_TIME_NSC_H, 8);
-	print_str("\n\r\n\r");
+	addTime(&rtt, &ts2, &ts4);
+	div2Time(&rtt);
+	printTimestamp(&rtt);
 
+	subTime(&ts2, &ts2, &rtt);
+	subTime(&offset, &offset, &ts2);
+	get_local_time(&rtc);
+	subTime(&rtc, &rtc, &ts2);
+	set_local_time(&rtc);
+	printTimestamp(&rtc);
 }
 
 

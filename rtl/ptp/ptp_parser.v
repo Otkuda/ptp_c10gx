@@ -187,7 +187,7 @@ always @(posedge rst or posedge clk) begin
 
     // check if it is PTP Event message
     if      (int_valid && (int_cnt==10'd4 || bypass_vlan && int_cnt==10'd5) && int_data[31:16]==c_ptp2_type &&
-            (ptp_msgid_mask[int_data[11: 8]]))  // ptp_message_id == ptp_event
+            (int_data[11: 8]!=4'hb && ptp_msgid_mask != 8'h0))  // ptp_message_id == ptp_event
       ptp_event <= 1'b1;
     else if (int_valid && int_cnt==10'd5 && bypass_udp_cnt==10'd1 && ptp_l4 &&
             (ptp_msgid_mask[int_data[11: 8]]))  // ptp_message_id == ptp_event 
@@ -261,7 +261,7 @@ always @(posedge rst or posedge clk) begin
     msg_ts_sec <= 48'd0;
     msg_ts_ns <= 32'd0;
   end
-  else if (int_eop && ptp_cnt==10'd11) begin
+  else if ((int_eop && ptp_cnt==10'hb) || (int_eop && ptp_cnt==10'hd)) begin
     ptp_found <=  ptp_event;
     ptp_infor <= {ptp_msgid, ptp_cksum, ptp_seqid};  // 4+12+16
     msg_ts_sec <= ptp_ts_sec;

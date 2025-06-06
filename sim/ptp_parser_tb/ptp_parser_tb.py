@@ -54,7 +54,7 @@ class TB():
 @cocotb.test()
 async def test_parser(dut):
   tb = TB(dut)
-  pkt = Ether(src="02:00:00:00:00:00", dst="12:34:56:78:90:aa") / myieee1588()
+  pkt = Ether(src="02:00:00:00:00:00", dst="12:34:56:78:90:aa") / myieee1588(messageType=9, control=9) / b"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01"
   await tb.init()
   await Timer(200, 'ns')
   frame = GmiiFrame.from_payload(raw(pkt))
