@@ -80,7 +80,7 @@ void get_local_time(timestamp *ts) {
 }
 
 void set_offset(timestamp *ts) {
-	RTC_ADJPER_L = ts->nsec;
+	RTC_ADJPER_L = -ts->nsec;
 	RTC_ADJNUM = 1;
 
 }
@@ -164,8 +164,10 @@ void synchronize() {
 					ptp_info = TSU_RXQUE_DATA_LL;
 					msg_id = ptp_info >> 28;
 					seq_id = ptp_info & 0x0000ffff;
-					if (msg_id != FOLLOW_UP || seq_id != sync_seq_id) step = SYNC;
-					else {
+					if (msg_id != FOLLOW_UP || seq_id != sync_seq_id) {
+						step = SYNC;
+						return;
+					} else {
 						get_time_msg(&ts1);
 						step = DELAY_REQ;
 						subTime(&ts2, &ts2, &ts1);
@@ -195,7 +197,10 @@ void synchronize() {
 					ptp_info = TSU_RXQUE_DATA_LL;
 					msg_id = ptp_info >> 28;
 					seq_id = ptp_info & 0x0000ffff;
-					if (msg_id != DELAY_RESP || seq_id != sync_seq_id) step = SYNC;
+					if (msg_id != DELAY_RESP || seq_id != sync_seq_id) {
+						step = SYNC;
+						return;
+					}
 					else {
 						get_time_msg(&ts4);
 						step = SYNC;
@@ -209,17 +214,17 @@ void synchronize() {
 				break;
 		}
 	}
-	
+
 	subTime(&ts4, &ts4, &ts3);
 	addTime(&rtt, &ts2, &ts4);
 	div2Time(&rtt);
-	printTimestamp(&rtt);
-
+	
 	subTime(&ts2, &ts2, &rtt);
 	subTime(&offset, &offset, &ts2);
 	get_local_time(&rtc);
 	subTime(&rtc, &rtc, &ts2);
 	set_local_time(&rtc);
+	//set_offset(&offset);
 	printTimestamp(&rtc);
 }
 
@@ -271,9 +276,9 @@ int main() {
 					break;
 			}
 		}
-		if (TSU_RXQUE_STATUS & 0x00FFFFFF > 0) {
-			synchronize();
-		}
+		// if (TSU_RXQUE_STATUS & 0x00FFFFFF > 0) {
+		// 	synchronize();
+		// }
 	}
 	return 0;
 }
