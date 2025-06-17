@@ -1,5 +1,5 @@
 #include "print.h"
-#include "main.h"
+#include "regs.h"
 
 #define OUTPORT 0x02004000
 
