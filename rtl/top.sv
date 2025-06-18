@@ -2,7 +2,7 @@
 `include "./tss/tss_pkg.svh"
 
 
-module top_top (
+module top (
   input        fpga_resetn, // Global reset, low active
   input        sfp_refclkp, // Reference clock for SFP+ from U64
   input 		   c10_clk50m,	// System clock 50MHz
@@ -171,7 +171,7 @@ module top_top (
   wire        wbs_tss_stb;
   wire        wbs_tss_we;
 
-  top_soc soc_inst (
+  soc soc_inst (
     .clock_main(gmii_tx_clk[0]),
     .rst_n(clean_rst_n),
     .BUTTONn(BUTTONn[1:0]),

@@ -23,7 +23,7 @@
 #
 # -------------------------------------------------------------------------- #
 set_global_assignment -name FAMILY "Cyclone 10 GX"
-set_global_assignment -name TOP_LEVEL_ENTITY top_top
+set_global_assignment -name TOP_LEVEL_ENTITY top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 24.3.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:08:27  MAY 13, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "24.3.0 Pro Edition"
@@ -32,6 +32,8 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
 set_global_assignment -name DEVICE 10CX220YF780E5G
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/top.sv
+set_global_assignment -name VERILOG_FILE rtl/soc.v
 set_global_assignment -name SOURCE_FILE rtl/tss/tss_pkg.svh
 set_global_assignment -name VERILOG_FILE rtl/i2c_init_sfp.v
 set_global_assignment -name IP_FILE ip/tse.ip
@@ -40,7 +42,6 @@ set_global_assignment -name IP_FILE ip/eth_fpll_1250.ip
 set_global_assignment -name VERILOG_FILE rtl/gmii_udp_loopback.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/eth_phy.sv
 set_global_assignment -name VERILOG_FILE rtl/wb_interconnect.v
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/top_top.sv
 set_global_assignment -name VERILOG_FILE rtl/priority_encoder.v
 set_global_assignment -name VERILOG_FILE rtl/axis_arb_mux_wrap_2.v
 set_global_assignment -name VERILOG_FILE rtl/axis_arb_mux.v
@@ -49,7 +50,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE rtl/tss/tss_controller_tx.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/tss/serializer.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/tss/computer_slave.sv
 set_global_assignment -name VERILOG_FILE "rtl/picorv32-master/picorv32.v"
-set_global_assignment -name VERILOG_FILE rtl/top.v
 set_global_assignment -name VERILOG_FILE rtl/simpleuart.v
 set_global_assignment -name VERILOG_FILE rtl/segment.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/ptp_gen.sv
