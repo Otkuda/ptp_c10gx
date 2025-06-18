@@ -9,7 +9,7 @@
  */
 
 
-module top_soc (
+module soc (
 		input 		 clock_main,	// 12MHz
 		input 		 rst_n,
 		input  [1:0] BUTTONn,
@@ -37,15 +37,15 @@ module top_soc (
 	localparam RAM_ADDR		=	32'h0000_2000;
 	localparam RAM_ADDR_END	=	32'h0000_27ff;
 
-	localparam LEDS_ADDR		=	32'h0200_0000;
-	localparam SEG1_ADDR		=	32'h0200_2000;
-	localparam SEG2_ADDR		=	32'h0200_2004;
-	localparam RGB1_ADDR		=	32'h0200_3000;
-	localparam RGB2_ADDR		=	32'h0200_3004;
-	localparam UART_DAT_ADDR = 32'h0200_4000;		// for both R & W
-	localparam UART_DIV_ADDR = 32'h0200_4008;
-	localparam BUTTON_ADDR	=	32'h0200_5000;
-	localparam SWITCH_ADDR	=	32'h0200_8000;
+	localparam LEDS_ADDR		= 32'h0200_0000;
+	localparam SEG1_ADDR		= 32'h0200_2000;
+	localparam SEG2_ADDR		= 32'h0200_2004;
+	localparam RGB1_ADDR		= 32'h0200_3000;
+	localparam RGB2_ADDR		= 32'h0200_3004;
+	localparam UART_DAT_ADDR 	= 32'h0200_4000;		// for both R & W
+	localparam UART_DIV_ADDR 	= 32'h0200_4008;
+	localparam BUTTON_ADDR		= 32'h0200_5000;
+	localparam SWITCH_ADDR		= 32'h0200_8000;
 
 	localparam WB_BASE_ADDR = 32'h0300_0000;
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -144,89 +144,6 @@ module top_soc (
 		ram_wren <= (mem_valid && !mem_ready &&  (mem_addr >= RAM_ADDR) && (mem_addr <= RAM_ADDR_END) && |mem_wstrb);
 	end
 
-	
-	// ========================= LEDS (8-bits) =========================
-	// addr 	: [0200_0000]
-	reg leds_ready;
-	reg [31:0] ledreg;
-	always @(posedge clock_main) 
-		leds_ready <= mem_valid && !mem_ready && mem_addr == LEDS_ADDR;
-
-	always @(posedge clock_main) begin
-		if (!rst_n) 
-			ledreg <= 32'h0000_0000;	// turn off
-		else if (mem_valid && mem_addr == LEDS_ADDR) begin
-			// ledreg <= leds_ready & mem_wstrb[0] ? mem_wdata[7:0] : 8'hff;
-			if (mem_wstrb[0]) ledreg[7:0] <= mem_wdata[7:0];
-			if (mem_wstrb[1]) ledreg[15:8] <= mem_wdata[15:8];
-			if (mem_wstrb[2]) ledreg[23:16] <= mem_wdata[23:16];
-			if (mem_wstrb[3]) ledreg[31:24] <= mem_wdata[31:24];
-		end
-	end
-	assign LEDSn = ~ledreg[3:0];	// reverse logic
-
-
-	// ========================= 7-segment x2 =========================
-	// addr1 	: [2000_2000]
-	// addr2 	: [2000_2004]
-	reg seg1_ready, seg2_ready;
-	reg [4:0] seg1reg, seg2reg;
-	reg seg1_disable, seg2_disable;
-	
-	always @(posedge clock_main) begin
-		seg1_ready <= mem_valid && !mem_ready && mem_addr == SEG1_ADDR;
-		seg2_ready <= mem_valid && !mem_ready && mem_addr == SEG2_ADDR;
-	end
-
-	always @(posedge clock_main) begin
-		if (!rst_n) begin
-			seg1reg <= 5'b00000;
-			seg2reg <= 5'b00000;
-			seg1_disable <= 1;
-			seg2_disable <= 1;
-		end else begin
-			if (mem_valid && !mem_ready && mem_wstrb == 4'hf && mem_addr == SEG1_ADDR) begin
-				seg1reg <= mem_wdata[4:0];
-				seg1_disable <= mem_wdata[5];
-			end
-			if (mem_valid && !mem_ready && mem_wstrb == 4'hf && mem_addr == SEG2_ADDR) begin
-				seg2reg <= mem_wdata[4:0];
-				seg2_disable <= mem_wdata[5];
-			end
-		end	
-	end
-
-	sevenSeg seg (
-		.disable1 	(seg1_disable),
-		.disable2 	(seg2_disable),
-		.seg_data_1	(seg1reg),
-		.seg_data_2	(seg2reg),
-		.segment_led_1 (SEG1n),
-		.segment_led_2	(SEG2n)
-	);
-
-	// ========================= RGB led x2  =========================
-	// addr1 	: [0200_3000]
-	// addr2		: [0200_3004]
-	reg rgb1_ready, rgb2_ready;
-	reg [2:0] rgb1reg, rgb2reg;
-	always @(posedge clock_main) begin
-		rgb1_ready = mem_valid && !mem_ready && mem_addr == RGB1_ADDR;
-		rgb2_ready = mem_valid && !mem_ready && mem_addr == RGB2_ADDR;
-	end
-	
-	always @(posedge clock_main) begin
-		if (!rst_n) begin
-			rgb1reg <= 3'b111;
-			rgb2reg <= 3'b111;
-		end else begin
-			if (mem_valid && !mem_ready && mem_addr == RGB1_ADDR && mem_wstrb[0] == 1)  rgb1reg <= mem_wdata[2:0];
-			if (mem_valid && !mem_ready && mem_addr == RGB2_ADDR && mem_wstrb[0] == 1)  rgb2reg <= mem_wdata[2:0];
-		end
-	end
-	assign RGB1n = rgb1reg;
-	assign RGB2n = rgb2reg;
-
 
 	// ========================= UART =========================
 	// DATA addr 	: [0200_4000]
@@ -306,11 +223,6 @@ module top_soc (
 	end
 
 	
-	// ========================= Switch x4 =========================
-	// addr1 	: [0200_5000]
-	reg sw_ready;
-	always @(posedge clock_main) 
-		sw_ready = mem_valid && !mem_ready && mem_addr == SWITCH_ADDR;
 	
 	// ========================= mem_ready & mem_rdata selector =========================
 
@@ -390,25 +302,25 @@ module top_soc (
 	end
 
 	assign mem_ready = rom_ready || ram_ready || 
-							leds_ready || 
-							seg1_ready || seg2_ready ||
-							rgb1_ready || rgb2_ready ||
+							// leds_ready || 
+							// seg1_ready || seg2_ready ||
+							// rgb1_ready || rgb2_ready ||
 							button_ready ||
-							sw_ready ||
+							// sw_ready ||
 							uart_div_ready ||
 							uart_data_ready && !uart_dat_wait ||
 							(iomem_valid && iomem_ready);
 							
 	assign mem_rdata = 	rom_ready ? romout : 
 								ram_ready ? ram_out :
-								leds_ready ? ledreg :
-								seg1_ready ? {27'h0, seg1reg} :
-								seg2_ready ? {27'h0, seg2reg} :
-								rgb1_ready ? {29'h0, rgb1reg} :
-								rgb2_ready ? {29'h0, rgb2reg} :
+//								leds_ready ? ledreg :
+								// seg1_ready ? {27'h0, seg1reg} :
+								// seg2_ready ? {27'h0, seg2reg} :
+								// rgb1_ready ? {29'h0, rgb1reg} :
+								// rgb2_ready ? {29'h0, rgb2reg} :
 //								button_ready ? button_reg :
 								button_ready ? {29'h0,button_reg} :
-								sw_ready ? {28'h0, SW} :
+								// sw_ready ? {28'h0, SW} :
 								uart_div_ready ? uart_div_reg_do :
 								uart_data_ready ? uart_dat_do :
 								(iomem_valid && iomem_ready) ? iomem_rdata :

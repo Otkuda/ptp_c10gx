@@ -4,9 +4,6 @@
 #include <stdint.h>
 
 
-// 8-bit leds
-#define leds 	(* (volatile uint32_t *) 	0x02000000)
-
 // UART
 #define uart_div	(* (volatile uint32_t *) 	0x02004008)
 #define uart_rx		(* (volatile uint32_t *) 	0x02004000)
