@@ -58,3 +58,7 @@ void printTimestamp(timestamp *ts) {
 	print_hex(ts->nsec, 8);
 	print_str("\n\r");
 }
+
+void calculate_delay(timestamp *delay, timestamp *ts1, timestamp *ts2, timestamp *ts3, timestamp *ts4) {
+	return;
+}

@@ -7,8 +7,8 @@
 #include "regs.h"
 #include "irq.h"
 #include "print.h"
-#include "arith.h"
 #include "ptp_drv.h"
+#include "arith.h"
 
 extern void delay_1s();
 
@@ -17,11 +17,6 @@ char greet[] = "\n\r_Cyclone10GX_\n\r";
 uint32_t val = 0;
 uint8_t timer_enabled = 0;
 
-void timer_handler(void) {
-	leds = val++;
-	if (val == 0x0100) val = 0;
-	set_timer(_FREQ_);
-}
 
 void irq_20_handler(void) {
 	switch(buttons) {
@@ -153,8 +148,8 @@ int main() {
 	uart_div = UART_DIV_VALUE;
 	irq_unmask_one_bit(IRQ20_BUTTONS);	// enable IRQ20 (buttons)
 	menu();		// usage menu
-	RTC_CTRL = RTC_SET_RESET;
-	RTC_CTRL = RTC_SET_CTRL_0;
+	// RTC_CTRL = RTC_SET_RESET;
+	// RTC_CTRL = RTC_SET_CTRL_0;
 	while (1) {
 		// UART check
 		if ((rx_temp = uart_rx) != 0xff) {
@@ -180,18 +175,19 @@ int main() {
 					ptp_init();
 					break;
 				
-				// case 's':
-				// 	send_ptp();
-				// 	break;
+				case 's': // get local time
+					get_local_time(&rtc);
+					printTimestamp(&rtc);
+					break;
 
 				default:
 					uart_tx = rx_temp;	// echos
 					break;
 			}
 		}
-		if (TSU_RXQUE_STATUS & 0x00FFFFFF > 0) {
-			synchronize();
-		}
+		// if (TSU_RXQUE_STATUS & 0x00FFFFFF > 0) {
+		// 	synchronize();
+		// }
 	}
 	return 0;
 }

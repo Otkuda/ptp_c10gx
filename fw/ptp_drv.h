@@ -18,6 +18,7 @@ void get_local_time(timestamp *ts);
 void set_offset(timestamp *ts);
 void set_local_time(timestamp *ts);
 void printTimestamp(timestamp *ts);
-
+void calculate_delay(timestamp *delay, timestamp *ts1, timestamp *ts2, timestamp *ts3, timestamp *ts4);
+void calculate_offset(timestamp *ts1, timestamp *ts2, timestamp *delay);
 
 #endif

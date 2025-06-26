@@ -15,7 +15,7 @@ void default_irq_handler(void) {
 
 /* Interrupt Handler */
 //System Interrupt Handler
-void timer_handler(void) __attribute__((weak, alias("default_irq_handler")));//0: timer interrupt
+
 //void irq_1_handler(void) __attribute__((weak, alias("default_irq_handler")));//1: debug breakpoint interrupt
 //void irq_2_handler(void) __attribute__((weak, alias("default_irq_handler")));//2: bus error interrupt
 //void irq_3_handler(void) __attribute__((weak, alias("default_irq_handler")));//3: illegal instruction interrupt
@@ -64,9 +64,6 @@ uint32_t *irq(uint32_t *regs, uint32_t irqs) {
 	irq_mask = irq_mask | irqs;  //mask up the running interrupt
 	mask_irq(irq_mask);
 
-	if ((irqs & 1) != 0) {
-		timer_handler();
-	}
 
 	if ((irqs & (1<<20)) != 0) {
 		 irq_20_handler();		// button handler
