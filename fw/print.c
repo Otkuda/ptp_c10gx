@@ -4,18 +4,18 @@
 #define OUTPORT 0x02004000
 
 
-void print_chr(char ch) {
+void printChr(char ch) {
 	*((volatile uint32_t*)OUTPORT) = ch;
 }
 
-void print_str(const char *p)
+void printStr(const char *p)
 {
 	while (*p != 0) {
 		*((volatile uint32_t*)OUTPORT) = *(p++);
 	}
 }
 
-void print_dec(unsigned int val)
+void printDec(unsigned int val)
 {
 	char buffer[10];
 	char *p = buffer;
@@ -28,7 +28,7 @@ void print_dec(unsigned int val)
 	}
 }
 
-void print_hex(unsigned int val, int digits)
+void printHex(unsigned int val, int digits)
 {
 	for (int i = (4*digits)-4; i >= 0; i -= 4)
 		*((volatile uint32_t*)OUTPORT) = "0123456789ABCDEF"[(val >> i) % 16];
