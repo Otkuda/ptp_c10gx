@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include "print.h"
 #include "regs.h"
+#include "arith.h"
 
 typedef struct ts {
     int32_t sec_l;
@@ -11,14 +12,20 @@ typedef struct ts {
 } timestamp;
 
 typedef struct {
-    // info about PTP packet
-    uint16_t seq_id;
-    uint16_t  msg_id; // used only last 4 bits
     // timestamped time
     timestamp recvTime;
     // origin timestamp field
     timestamp originTimestamp;
+    // info about PTP packet
+    uint16_t seq_id;
+    uint16_t msg_id; // used only last 4 bits
+    uint16_t sync_seq_id;
 } ptpMsg;
+
+typedef struct {
+    /* data */
+} ptpSeq;
+
 
 void ptpInit();
 void getRxTimestamp(timestamp *ts);

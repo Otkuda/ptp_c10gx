@@ -43,13 +43,28 @@ uint16_t seq_id, sync_seq_id;
 uint8_t step;
 uint8_t update_rtt = 1;
 timestamp ts1, ts2, ts3, ts4;
-timestamp rtt, offset, rtc;
+timestamp delay, offset, rtc;
 
 void handleMsg() {
-	// read message info
-	TSU_RXCTRL = TSU_GET_RXQUE;
-	TSU_RXCTRL = TSU_SET_CTRL_0;
+	ptpMsg message;
+
+	readMsgRx(&message);
+	switch (message.msg_id) {
+	case SYNC:
+		handleSync(&message, &ts2);
+		break;
+	case FOLLOW_UP:
+		handleFollowUp(&message, &ts1); // get time
+		updateOffset(&ts1, &ts2, &delay);
+		break;
+	case DELAY_RESP:
+		handleDelayResp();
+		break;
+	default:
+		break;
+	}
 }
+
 
 
 /*

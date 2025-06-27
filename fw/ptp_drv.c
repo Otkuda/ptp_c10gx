@@ -1,6 +1,7 @@
 #include "ptp_drv.h"
 #include "print.h"
 #include "regs.h"
+#include "arith.h"
 
 void ptpInit() {
 	RTC_PERIOD_H = RTC_SET_PERIOD_H;
@@ -59,14 +60,50 @@ void printTimestamp(timestamp *ts) {
 	printStr("\n\r");
 }
 
-// void readMsgRx(ptpMsg *msg) {
-// 	// get msg from fifo to registers
-// 	TSU_RXCTRL = TSU_GET_RXQUE;
-// 	TSU_RXCTRL = TSU_SET_CTRL_0;
-// 	// get info to struct
-// 	msg->seq_id = TSU_RXQUE_DATA_LL & 0xff;
-// 	msg->msg_id = TSU_RXQUE_DATA_LL >> 28;
+void readMsgRx(ptpMsg *msg) {
+	// get msg from fifo to registers
+	TSU_RXCTRL = TSU_GET_RXQUE;
+	TSU_RXCTRL = TSU_SET_CTRL_0;
+	// get info to struct
+	msg->seq_id = TSU_RXQUE_DATA_LL & 0xff;
+	msg->msg_id = TSU_RXQUE_DATA_LL >> 28;
 
-// 	get_tsed_time_rx(&msg->recvTime);
-	
-// }
+	getRxTimestamp(&msg->recvTime);	
+}
+
+void issueDelayReq(ptpMsg *msg, timestamp *ts) {
+	PTP_GEN_INFO = 0x10000000 | msg->sync_seq_id;
+	PTP_GEN_CTRL = 1;
+
+	if (TSU_TXQUE_STATUS & 0x00ffffff > 0) {
+		TSU_TXCTRL = TSU_GET_TXQUE;
+		TSU_TXCTRL = TSU_SET_CTRL_0;
+		getTxTimestamp(ts);
+	}
+}
+
+void handleSync(ptpMsg *msg, timestamp *ts) {
+	msg->sync_seq_id = msg->seq_id; // set sequence id for this synchronization sequence
+	*ts = msg->recvTime; 
+}
+
+void handleFollowUp(ptpMsg *msg, timestamp *ts) {
+	if (msg->sync_seq_id != msg->seq_id) return;
+	else {
+		*ts = msg->originTimestamp;
+	}
+}
+
+void updateOffset(timestamp *ts1, timestamp *ts2, timestamp *delay, timestamp *offset, timestamp *offsetReg, timestamp *localTime) {
+	subTime(offset, ts2, ts1);
+	normalizeTime(offset);
+	subTime(offset, offset, delay); // offset(n)
+	normalizeTime(offset);
+	subTime(offsetReg, offsetReg, offset); // offset(n+1) = offset(n-1) - offset(n)
+	normalizeTime(offsetReg);
+	getLocalTime(localTime);
+	addTime(localTime, localTime, offsetReg);
+	normalizeTime(localTime);
+	setLocalTime(localTime);
+
+}
