@@ -85,7 +85,7 @@ module soc (
 		.clk		(clock_main),
 		.resetn	(rst_n),
 		.trap		(trapsig),
-		.irq		(irq),		// input [31:0] irq
+		.irq		(),		// input [31:0] irq
 		.eoi		(eoi),		// output [31:0] eoi
 
 		.mem_valid	(mem_valid),	//		output reg        mem_valid,	-- MEMORY ADDRESS VALID

@@ -174,7 +174,7 @@ module top (
   soc soc_inst (
     .clock_main(gmii_tx_clk[0]),
     .rst_n(clean_rst_n),
-    .BUTTONn(BUTTONn[1:0]),
+    .BUTTONn(),
     .LEDSn(),
     .RGB1n(RGB1n),
     .RGB2n(RGB2n),
