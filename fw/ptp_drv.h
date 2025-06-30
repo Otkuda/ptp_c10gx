@@ -36,5 +36,11 @@ void setOffset(timestamp *ts);
 void setLocalTime(timestamp *ts);
 void printTimestamp(timestamp *ts);
 void readMsgRx(ptpMsg *msg);
+void issueDelayReq(ptpMsg *msg, timestamp *ts);
+void handleSync(ptpMsg *msg, timestamp *ts);
+void handleFollowUp(ptpMsg *msg, timestamp *ts);
+void handleDelayResp(ptpMsg *msg, timestamp *ts);
+void updateOffset(timestamp *ts1, timestamp *ts2, timestamp *delay, timestamp *offset, timestamp *localTime);
+void updateDelay(timestamp *ts1, timestamp *ts2, timestamp *ts3, timestamp *ts4, timestamp *delay);
 
 #endif

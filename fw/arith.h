@@ -1,5 +1,5 @@
 #ifndef _ARITH_
-#define _ARITH
+#define _ARITH_
 
 #include "ptp_drv.h"
 

@@ -7,8 +7,9 @@
 #include "regs.h"
 #include "irq.h"
 #include "print.h"
-#include "ptp_drv.h"
 #include "arith.h"
+#include "ptp_drv.h"
+
 
 extern void delay_1s();
 
@@ -17,48 +18,36 @@ char greet[] = "\n\r_Cyclone10GX_\n\r";
 uint32_t val = 0;
 uint8_t timer_enabled = 0;
 
-
-void irq_20_handler(void) {
-	switch(buttons) {
-		case 1:
-			printStr("0");
-			break;
-		case 2:
-			printStr("1");
-			break;
-		case 4:
-			printStr("2");
-			break;
-		default:
-			break;
-	}
-	buttons = 0;
-}
-
 void menu() {
 	printStr(greet);
 }
 
-uint16_t seq_id, sync_seq_id;
-uint8_t step;
-uint8_t update_rtt = 1;
 timestamp ts1, ts2, ts3, ts4;
-timestamp delay, offset, rtc;
+timestamp delay, offset, localTime;
+uint16_t seq_id, sync_seq_id;
+
+ptpMsg message;
 
 void handleMsg() {
-	ptpMsg message;
 
 	readMsgRx(&message);
 	switch (message.msg_id) {
 	case SYNC:
 		handleSync(&message, &ts2);
+		printTimestamp(&ts2);
 		break;
 	case FOLLOW_UP:
 		handleFollowUp(&message, &ts1); // get time
-		updateOffset(&ts1, &ts2, &delay);
+		printTimestamp(&ts1);
+		getLocalTime(&localTime);
+		updateOffset(&ts1, &ts2, &delay, &offset, &localTime);
+		issueDelayReq(&message, &ts3);
+		printTimestamp(&ts3);
 		break;
 	case DELAY_RESP:
-		handleDelayResp();
+		handleDelayResp(&message, &ts4);
+		updateDelay(&ts1, &ts2, &ts3, &ts4, &delay);
+		printTimestamp(&ts4);
 		break;
 	default:
 		break;
@@ -106,8 +95,8 @@ int main() {
 					break;
 				
 				case 's': // get local time
-					getLocalTime(&rtc);
-					printTimestamp(&rtc);
+					getLocalTime(&localTime);
+					printTimestamp(&localTime);
 					break;
 
 				default:
@@ -116,7 +105,7 @@ int main() {
 			}
 		}
 		if (TSU_RXQUE_STATUS & 0x00FFFFFF > 0) {
-			msgHandle();
+			handleMsg();
 		}
 	}
 	return 0;

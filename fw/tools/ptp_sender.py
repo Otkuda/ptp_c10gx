@@ -57,12 +57,12 @@ def main():
 
     # for i in range(5):
     t = time.time_ns()
-    sendp(eth / myieee1588(messageType=0x1, control=0x1, flags=0, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
-    # sendp(eth / myieee1588(messageType=8, control=8, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
-    # sniff(1, prn=lambda x: print(x), iface=interface, timeout=0.1)
-    # t = time.time_ns()
-    # sendp(eth / myieee1588(messageType=9, control=9, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
-    # time.sleep(0.8)
+    sendp(eth / myieee1588(messageType=0, control=0, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
+    sendp(eth / myieee1588(messageType=8, control=8, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
+    sniff(1, prn=lambda x: print(x), iface=interface, timeout=0.5)
+    t = time.time_ns()
+    sendp(eth / myieee1588(messageType=9, control=9, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
+    time.sleep(0.8)
     # t = time.time_ns()
     # sendp(eth / myieee1588(messageType=0, control=0, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)
     # sendp(eth / myieee1588(messageType=8, control=8, timestampNSec=t%1000000000, timestampSec=t//1000000000), iface=interface)

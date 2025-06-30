@@ -1,7 +1,7 @@
-#include "ptp_drv.h"
 #include "print.h"
 #include "regs.h"
 #include "arith.h"
+#include "ptp_drv.h"
 
 void ptpInit() {
 	RTC_PERIOD_H = RTC_SET_PERIOD_H;
@@ -68,18 +68,18 @@ void readMsgRx(ptpMsg *msg) {
 	msg->seq_id = TSU_RXQUE_DATA_LL & 0xff;
 	msg->msg_id = TSU_RXQUE_DATA_LL >> 28;
 
-	getRxTimestamp(&msg->recvTime);	
+	getRxTimestamp(&(msg->recvTime));
+	getOriginTimestamp(&(msg->originTimestamp));
 }
 
 void issueDelayReq(ptpMsg *msg, timestamp *ts) {
 	PTP_GEN_INFO = 0x10000000 | msg->sync_seq_id;
 	PTP_GEN_CTRL = 1;
 
-	if (TSU_TXQUE_STATUS & 0x00ffffff > 0) {
-		TSU_TXCTRL = TSU_GET_TXQUE;
-		TSU_TXCTRL = TSU_SET_CTRL_0;
-		getTxTimestamp(ts);
-	}
+	while (TSU_TXQUE_STATUS & 0x00ffffff == 0);
+	TSU_TXCTRL = TSU_GET_TXQUE;
+	TSU_TXCTRL = TSU_SET_CTRL_0;
+	getTxTimestamp(ts);
 }
 
 void handleSync(ptpMsg *msg, timestamp *ts) {
@@ -94,16 +94,32 @@ void handleFollowUp(ptpMsg *msg, timestamp *ts) {
 	}
 }
 
-void updateOffset(timestamp *ts1, timestamp *ts2, timestamp *delay, timestamp *offset, timestamp *offsetReg, timestamp *localTime) {
+void handleDelayResp(ptpMsg *msg, timestamp *ts) {
+	if (msg->sync_seq_id != msg->seq_id) return;
+	else {
+		*ts = msg->originTimestamp;
+	}
+}
+
+void updateOffset(timestamp *ts1, timestamp *ts2, timestamp *delay, timestamp *offset, timestamp *localTime) {
 	subTime(offset, ts2, ts1);
 	normalizeTime(offset);
 	subTime(offset, offset, delay); // offset(n)
 	normalizeTime(offset);
-	subTime(offsetReg, offsetReg, offset); // offset(n+1) = offset(n-1) - offset(n)
-	normalizeTime(offsetReg);
-	getLocalTime(localTime);
-	addTime(localTime, localTime, offsetReg);
+	// subTime(offsetReg, offsetReg, offset); // offset(n+1) = offset(n-1) - offset(n)
+	// normalizeTime(offsetReg);
+	// getLocalTime(localTime);
+	subTime(localTime, localTime, offset);
 	normalizeTime(localTime);
 	setLocalTime(localTime);
+}
 
+void updateDelay(timestamp *ts1, timestamp *ts2, timestamp *ts3, timestamp *ts4, timestamp *delay) {
+	subTime(ts2, ts2, ts1);
+	subTime(ts4, ts4, ts3);
+	normalizeTime(ts2);
+	normalizeTime(ts4);
+	addTime(delay, ts2, ts4);
+	normalizeTime(delay);
+	div2Time(delay);
 }
