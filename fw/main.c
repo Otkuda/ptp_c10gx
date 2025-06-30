@@ -65,7 +65,7 @@ int main() {
 
 	// uart setup
 	uart_div = UART_DIV_VALUE;
-	irq_unmask_one_bit(IRQ20_BUTTONS);	// enable IRQ20 (buttons)
+	//irq_unmask_one_bit(IRQ20_BUTTONS);	// enable IRQ20 (buttons)
 	menu();		// usage menu
 	// RTC_CTRL = RTC_SET_RESET;
 	// RTC_CTRL = RTC_SET_CTRL_0;
@@ -73,17 +73,6 @@ int main() {
 		// UART check
 		if ((rx_temp = uart_rx) != 0xff) {
 			switch (rx_temp) {
-				case 't':
-					if (timer_enabled) {
-						printStr("disabling timer irq\n\r");
-						irq_mask_one_bit(IRQ0_TIMER);
-					} else {
-						printStr("enabling timer irq\n\r");
-						irq_unmask_one_bit(IRQ0_TIMER);
-						set_timer(_FREQ_);
-					}
-					timer_enabled = !timer_enabled;
-					break;
 					
 				case 'a':
 				case ' ':
