@@ -76,7 +76,7 @@ void issueDelayReq(ptpMsg *msg, timestamp *ts) {
 	PTP_GEN_INFO = 0x10000000 | msg->sync_seq_id;
 	PTP_GEN_CTRL = 1;
 
-	while (TSU_TXQUE_STATUS & 0x00ffffff == 0);
+	while (!(TSU_TXQUE_STATUS & 0x000000ff));
 	TSU_TXCTRL = TSU_GET_TXQUE;
 	TSU_TXCTRL = TSU_SET_CTRL_0;
 	getTxTimestamp(ts);
@@ -101,17 +101,18 @@ void handleDelayResp(ptpMsg *msg, timestamp *ts) {
 	}
 }
 
-void updateOffset(timestamp *ts1, timestamp *ts2, timestamp *delay, timestamp *offset, timestamp *localTime) {
+void applyOffset(timestamp *offset, timestamp *localTime) {
+	getLocalTime(localTime);
+	subTime(localTime, localTime, offset);
+	normalizeTime(localTime);
+	setLocalTime(localTime);
+}
+
+void updateOffset(timestamp *ts1, timestamp *ts2, timestamp *delay, timestamp *offset) {
 	subTime(offset, ts2, ts1);
 	normalizeTime(offset);
 	subTime(offset, offset, delay); // offset(n)
 	normalizeTime(offset);
-	// subTime(offsetReg, offsetReg, offset); // offset(n+1) = offset(n-1) - offset(n)
-	// normalizeTime(offsetReg);
-	// getLocalTime(localTime);
-	subTime(localTime, localTime, offset);
-	normalizeTime(localTime);
-	setLocalTime(localTime);
 }
 
 void updateDelay(timestamp *ts1, timestamp *ts2, timestamp *ts3, timestamp *ts4, timestamp *delay) {

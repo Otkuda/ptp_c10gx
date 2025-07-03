@@ -1,8 +1,9 @@
 /*
  *
- * PicoRV StepFPGA demo fw
+ * PTP slave implementation 
  *
- * btko - Aug'22
+ * Kirill Kotov
+ * kirill.kotov@spbpu.com
  */
 #include "regs.h"
 #include "irq.h"
@@ -13,10 +14,7 @@
 
 extern void delay_1s();
 
-char greet[] = "\n\r_Cyclone10GX_\n\r";
-
-uint32_t val = 0;
-uint8_t timer_enabled = 0;
+char greet[] = "\n\r_Cyclone10GX_ x\n\r";
 
 void menu() {
 	printStr(greet);
@@ -34,20 +32,22 @@ void handleMsg() {
 	switch (message.msg_id) {
 	case SYNC:
 		handleSync(&message, &ts2);
-		printTimestamp(&ts2);
+		//printTimestamp(&ts2);
 		break;
 	case FOLLOW_UP:
 		handleFollowUp(&message, &ts1); // get time
-		printTimestamp(&ts1);
+		//printTimestamp(&ts1);
 		getLocalTime(&localTime);
-		updateOffset(&ts1, &ts2, &delay, &offset, &localTime);
+		updateOffset(&ts1, &ts2, &delay, &offset);
 		issueDelayReq(&message, &ts3);
-		printTimestamp(&ts3);
+		//printTimestamp(&ts3);
 		break;
 	case DELAY_RESP:
 		handleDelayResp(&message, &ts4);
+		//printTimestamp(&ts4);
 		updateDelay(&ts1, &ts2, &ts3, &ts4, &delay);
-		printTimestamp(&ts4);
+		applyOffset(&offset, &localTime);
+		printTimestamp(&localTime);
 		break;
 	default:
 		break;
@@ -61,11 +61,9 @@ void handleMsg() {
  */
 int main() {
 	uint8_t rx_temp;
-	uint32_t time_s;
 
 	// uart setup
 	uart_div = UART_DIV_VALUE;
-	//irq_unmask_one_bit(IRQ20_BUTTONS);	// enable IRQ20 (buttons)
 	menu();		// usage menu
 	// RTC_CTRL = RTC_SET_RESET;
 	// RTC_CTRL = RTC_SET_CTRL_0;
