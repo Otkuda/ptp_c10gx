@@ -75,7 +75,7 @@ void readMsgRx(ptpMsg *msg) {
 void issueDelayReq(ptpMsg *msg, timestamp *ts) {
 	PTP_GEN_INFO = 0x10000000 | msg->sync_seq_id;
 	PTP_GEN_CTRL = 1;
-
+	
 	while (!(TSU_TXQUE_STATUS & 0x000000ff));
 	TSU_TXCTRL = TSU_GET_TXQUE;
 	TSU_TXCTRL = TSU_SET_CTRL_0;
@@ -101,11 +101,17 @@ void handleDelayResp(ptpMsg *msg, timestamp *ts) {
 	}
 }
 
-void applyOffset(timestamp *offset, timestamp *localTime) {
+void setTime(timestamp *offset, timestamp *localTime) {
 	getLocalTime(localTime);
 	subTime(localTime, localTime, offset);
 	normalizeTime(localTime);
 	setLocalTime(localTime);
+}
+
+void applyOffset(timestamp *offset) {
+	RTC_OFFSET -= offset->nsec;
+	RTC_CTRL = 0x00100000;
+	RTC_CTRL = RTC_SET_CTRL_0;
 }
 
 void updateOffset(timestamp *ts1, timestamp *ts2, timestamp *delay, timestamp *offset) {

@@ -58,7 +58,7 @@ endgenerate
 assign byte_addr_in = {word_addr_in, 2'b00};
 
 wire rtc_rst;
-wire rtc_time_ld, rtc_period_ld, rtc_adj_ld, adj_ld_done;
+wire rtc_time_ld, rtc_period_ld, rtc_adj_ld, adj_ld_done, rtc_offset_ld;
 wire [37:0] rtc_time_reg_ns;
 wire [47:0] rtc_time_reg_sec;
 wire [39:0] rtc_period;
@@ -67,6 +67,7 @@ wire [39:0] rtc_period_adj;
 wire [37:0] rtc_time_reg_ns_val;
 wire [47:0] rtc_time_reg_sec_val;
 wire [79:0] rtc_time_ptp_val = {rtc_time_ptp_sec[47:0], rtc_time_ptp_ns[31:0]};
+wire [39:0] rtc_offset;
 
 wire rx_q_rst, rx_q_clk;
 wire rx_q_rd_en;
@@ -100,6 +101,8 @@ regs u_rgs
   .adj_ld_out(rtc_adj_ld),
   .adj_ld_data_out(rtc_adj_ld_data),
   .period_adj_out(rtc_period_adj),
+  .offset_ld_out(rtc_offset_ld),
+  .offset_out(rtc_offset),
   .adj_ld_done_in(adj_ld_done),
   .time_reg_ns_in(rtc_time_reg_ns_val),
   .time_reg_sec_in(rtc_time_reg_sec_val),
@@ -132,6 +135,8 @@ rtc u_rtc
   .adj_ld_data(rtc_adj_ld_data),
   .adj_ld_done(adj_ld_done),
   .period_adj(rtc_period_adj),
+  .offset_ld(rtc_offset_ld),
+  .offset_nsec(rtc_offset),
   .time_reg_ns(rtc_time_reg_ns_val),
   .time_reg_sec(rtc_time_reg_sec_val),
   .time_one_pps(rtc_time_one_pps),

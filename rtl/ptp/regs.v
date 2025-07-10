@@ -39,6 +39,8 @@ module regs (
   output        adj_ld_out,
   output [31:0] adj_ld_data_out,
   output [39:0] period_adj_out,
+  output        offset_ld_out,
+  output [39:0] offset_out,
   input         adj_ld_done_in,
   input  [37:0] time_reg_ns_in,
   input  [47:0] time_reg_sec_in,
@@ -152,7 +154,7 @@ reg [31:0] reg_24;  // peri 32 bit nsf
 reg [31:0] reg_28;  // ajpr  8 bit ns
 reg [31:0] reg_2c;  // ajpr 32 bit nsf
 reg [31:0] reg_30;  // ajld 32 bit
-reg [31:0] reg_34;  // null
+reg [31:0] reg_34;  // rtc offset 32 bit
 reg [31:0] reg_38;  // null
 reg [31:0] reg_3c;  // null
 reg [31:0] reg_40;  // ctrl  2 bit
@@ -250,7 +252,7 @@ always @(posedge clk) begin
   if (rd_in && cs_28) data_out_reg <= {24'd0, reg_28[ 7: 0]};
   if (rd_in && cs_2c) data_out_reg <= reg_2c;
   if (rd_in && cs_30) data_out_reg <= reg_30;
-  if (rd_in && cs_34) data_out_reg <= 32'd0;
+  if (rd_in && cs_34) data_out_reg <= reg_34;
   if (rd_in && cs_38) data_out_reg <= 32'd0;
   if (rd_in && cs_3c) data_out_reg <= 32'd0;
   // register mapping: TSU RX
@@ -283,17 +285,18 @@ assign data_out = data_out_reg;
 // register mapping: RTC
 //wire       = reg_00[ 7];
 //wire       = reg_00[ 6];
-//wire       = reg_00[ 5];
-wire rtc_rst = reg_00[ 4];
-wire time_ld = reg_00[ 3];
-wire perd_ld = reg_00[ 2];
-wire adjt_ld = reg_00[ 1];
-wire time_rd = reg_00[ 0];
+wire offset_ld = reg_00[ 5];
+wire rtc_rst   = reg_00[ 4];
+wire time_ld   = reg_00[ 3];
+wire perd_ld   = reg_00[ 2];
+wire adjt_ld   = reg_00[ 1];
+wire time_rd   = reg_00[ 0];
 assign time_reg_sec_out [47:0] = {reg_10[15: 0], reg_14[31: 0]};
 assign time_reg_ns_out  [37:0] = {reg_18[29: 0], reg_1c[ 7: 0]};
 assign period_out       [39:0] = {reg_20[ 7: 0], reg_24[31: 0]};
 assign period_adj_out   [39:0] = {reg_28[ 7: 0], reg_2c[31: 0]};
 assign adj_ld_data_out  [31:0] =  reg_30[31: 0];
+assign offset_out = { reg_34, 8'h0 }; 
 
 // register mapping: TSU RX
 //wire       = reg_40[ 7];
@@ -349,6 +352,14 @@ always @(posedge rtc_clk_in) begin
   adjt_ld_s1 <= adjt_ld;
   adjt_ld_s2 <= adjt_ld_s1;
   adjt_ld_s3 <= adjt_ld_s2;
+end
+
+reg offset_ld_s1, offset_ld_s2, offset_ld_s3;
+assign offset_ld_out = offset_ld_s2 && !offset_ld_s3;
+always @(posedge rtc_clk_in) begin
+  offset_ld_s1 <= offset_ld;
+  offset_ld_s2 <= offset_ld_s1;
+  offset_ld_s3 <= offset_ld_s3;
 end
 
 // RTC time read CDC hand-shaking

@@ -35,6 +35,9 @@ module rtc (
   input [31:0] adj_ld_data,
   output reg   adj_ld_done,
   input [39:0] period_adj,  // 39:32 ns, 31:0 ns_fraction
+  // offset setup
+  input        offset_ld,
+  input [39:0] offset_nsec,
 
   // time output: for internal with ns fraction
   output [37:0] time_reg_ns,  // 37:8 ns, 7:0 ns_fraction
@@ -54,9 +57,9 @@ reg  [39:0] time_adj;    // 39:32 ns, 31:0 ns_fraction
 // frequency and small time difference adjustment registers
 always @(posedge rst or posedge clk) begin
   if (rst) begin
-    period_fix  <= period_fix;  //40'd0;
+    period_fix  <= 40'd0;
     adj_cnt     <= 32'hffffffff;
-    time_adj    <= time_adj;    //40'd0;
+    time_adj    <= 40'd0;
     adj_ld_done <= 1'b0;
   end
   else begin
@@ -118,6 +121,10 @@ always @(posedge rst or posedge clk) begin
       if (time_acc_48s_inc) begin
         time_acc_30n_08f_pre_pos <= time_acc_30n_08f_pre_neg + time_adj_22b_08n_08f;
         time_acc_30n_08f_pre_neg <= time_acc_30n_08f_pre_neg + time_adj_22b_08n_08f - time_acc_modulo;
+      end
+      else if (offset_ld) begin
+        time_acc_30n_08f_pre_pos <= time_acc_30n_08f_pre_pos + time_adj_22b_08n_08f + offset_nsec;
+        time_acc_30n_08f_pre_neg <= time_acc_30n_08f_pre_pos + time_adj_22b_08n_08f + offset_nsec - time_acc_modulo;
       end
       else begin
         time_acc_30n_08f_pre_pos <= time_acc_30n_08f_pre_pos + time_adj_22b_08n_08f;

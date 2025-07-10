@@ -32,13 +32,14 @@ void handleMsg() {
 	switch (message.msg_id) {
 	case SYNC:
 		handleSync(&message, &ts2);
-		//printTimestamp(&ts2);
+		printTimestamp(&ts2);
 		break;
 	case FOLLOW_UP:
 		handleFollowUp(&message, &ts1); // get time
 		//printTimestamp(&ts1);
 		getLocalTime(&localTime);
 		updateOffset(&ts1, &ts2, &delay, &offset);
+		printTimestamp(&offset);
 		issueDelayReq(&message, &ts3);
 		//printTimestamp(&ts3);
 		break;
@@ -46,7 +47,8 @@ void handleMsg() {
 		handleDelayResp(&message, &ts4);
 		//printTimestamp(&ts4);
 		updateDelay(&ts1, &ts2, &ts3, &ts4, &delay);
-		applyOffset(&offset, &localTime);
+		if (offset.sec_l != 0) setTime(&offset, &localTime);
+		else applyOffset(&offset);
 		printTimestamp(&localTime);
 		break;
 	default:

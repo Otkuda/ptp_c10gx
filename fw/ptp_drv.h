@@ -22,11 +22,6 @@ typedef struct {
     uint16_t sync_seq_id;
 } ptpMsg;
 
-typedef struct {
-    /* data */
-} ptpSeq;
-
-
 void ptpInit();
 void getRxTimestamp(timestamp *ts);
 void getTxTimestamp(timestamp *ts);
@@ -40,7 +35,8 @@ void issueDelayReq(ptpMsg *msg, timestamp *ts);
 void handleSync(ptpMsg *msg, timestamp *ts);
 void handleFollowUp(ptpMsg *msg, timestamp *ts);
 void handleDelayResp(ptpMsg *msg, timestamp *ts);
-void applyOffset(timestamp *offset, timestamp *localTime);
+void setTime(timestamp *offset, timestamp *localTime);
+void applyOffset(timestamp *offset);
 void updateOffset(timestamp *ts1, timestamp *ts2, timestamp *delay, timestamp *offset);
 void updateDelay(timestamp *ts1, timestamp *ts2, timestamp *ts3, timestamp *ts4, timestamp *delay);
 

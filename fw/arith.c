@@ -27,7 +27,7 @@ void subTime(timestamp *r, timestamp *x, timestamp *y) {
 
 void div2Time(timestamp *r) {
 	r->nsec += (r->sec_l % 2) * 1000000000;
-	r->sec_l >>= 1;
-	r->nsec >>= 1;
+	r->sec_l /= 2;
+	r->nsec /= 2;
 	normalizeTime(r);
 }

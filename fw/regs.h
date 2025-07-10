@@ -29,6 +29,7 @@
 #define RTC_ADJPER_H   (* (volatile uint32_t *) 0x03000028)
 #define RTC_ADJPER_L   (* (volatile uint32_t *) 0x0300002C)
 #define RTC_ADJNUM     (* (volatile uint32_t *) 0x03000030)
+#define RTC_OFFSET     (* (volatile uint32_t *) 0x03000034)
 // define RTC control values
 #define RTC_SET_CTRL_0 0x00
 #define RTC_GET_TIME   0x01
