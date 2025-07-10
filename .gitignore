@@ -5,6 +5,7 @@ qdb
 tmp-clearbox
 work
 ptp_parser
+rtc_sim
 __pycache__
 *.history
 *.wlf

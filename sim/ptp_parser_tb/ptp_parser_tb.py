@@ -7,9 +7,30 @@ import cocotb.utils
 
 from cocotbext.eth import GmiiSource, GmiiFrame
 
-from fw.tools.ptp_sender import myieee1588
-
 CLK_PER = 8
+
+class myieee1588(Packet):
+    name = "Precision Time Protocol"
+    fields_desc = [
+        XBitField('transportSpecific', 0x0, 4),
+        XBitField('messageType', 0x0, 4),
+        XByteField('versionPTP', 0x02),
+        XShortField('messageLength', 0x002c),
+        XByteField('subdomainNumber', 0x00),
+        XByteField('none1', 0x00),
+        XShortField('flags', 0x0200),
+        XBitField('correction', 0x0, 64),
+        XBitField('none2', 0x0, 32),
+        XBitField('clockIdentity', 0x08028efffe9b97a5, 64),
+        XShortField('sourcePortID', 0x01),
+        XShortField('sequenceID', 0x01),
+        XByteField('control', 0x00),
+        XByteField('logMessagePeriod', 0x0),
+        XBitField('timestampSec', 0x000000000030, 48),
+        XBitField('timestampNSec', 0x0af320c0, 32)
+    ]
+
+bind_layers(Ether, myieee1588, type=0x88f7)
 
 class RtcTimer():
   
@@ -54,7 +75,7 @@ class TB():
 @cocotb.test()
 async def test_parser(dut):
   tb = TB(dut)
-  pkt = Ether(src="02:00:00:00:00:00", dst="12:34:56:78:90:aa") / myieee1588(messageType=9, control=9) / b"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01"
+  pkt = Ether(src="02:00:00:00:00:00", dst="12:34:56:78:90:aa") / myieee1588(messageType=0, control=0)
   await tb.init()
   await Timer(200, 'ns')
   frame = GmiiFrame.from_payload(raw(pkt))
