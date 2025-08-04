@@ -110,7 +110,7 @@ void setTime(timestamp *offset, timestamp *localTime) {
 
 void applyOffset(timestamp *offset) {
 	RTC_OFFSET -= offset->nsec;
-	RTC_CTRL = 0x00100000;
+	RTC_CTRL = RTC_SET_OFFSET;
 	RTC_CTRL = RTC_SET_CTRL_0;
 }
 

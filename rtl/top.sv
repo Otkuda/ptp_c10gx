@@ -218,6 +218,8 @@ module top (
     );
 
   wire pps_out;
+  wire [31:0] ptp_ns;
+  wire [47:0] ptp_sec;
 
   ha1588_wb ptp_inst (
     .clk_i(gmii_tx_clk[0]),
@@ -230,8 +232,8 @@ module top (
     .dat_o(wbs_ptp_data_r),
     
     .rtc_clk(gmii_tx_clk[0]),
-    .rtc_time_ptp_ns(),
-    .rtc_time_ptp_sec(),
+    .rtc_time_ptp_ns(ptp_ns),
+    .rtc_time_ptp_sec(ptp_sec),
     .rtc_time_one_pps(pps_out),
     
     .rx_gmii_clk(gmii_rx_clk[0]),
@@ -280,8 +282,8 @@ module top (
     .wbs_stb_i(wbs_tss_stb),
     .wbs_ack_o(wbs_tss_ack),
 
-    .timer_valid_i(),
-    .timer_i(),
+    .timer_valid_i('1),
+    .timer_i({ptp_sec, ptp_ns[31:3]}),
     
     .tss_axis_tdata(tss_axis_tdata),
     .tss_axis_tvalid(tss_axis_tvalid),

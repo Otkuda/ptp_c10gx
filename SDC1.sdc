@@ -34,3 +34,7 @@ set_clock_uncertainty -fall_from [get_clocks {xcvr_clk}] -fall_to [get_clocks {x
 derive_pll_clocks
 derive_clock_uncertainty
 
+source ./axis_async_fifo.sdc
+
+constrain_axis_async_fifo_inst "gmii_inst|eth_mac_inst|rx_fifo|fifo_inst"
+constrain_axis_async_fifo_inst "gmii_inst|eth_mac_inst|tx_fifo|fifo_inst"

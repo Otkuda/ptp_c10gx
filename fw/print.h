@@ -7,4 +7,8 @@ extern void printStr(const char *p);
 extern void printDec(unsigned int val);
 extern void printHex(unsigned int val, int digits);
 
+char getc();
+void getStr(char *p);
+int atoi(char *p);
+
 #endif

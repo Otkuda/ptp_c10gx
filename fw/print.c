@@ -33,3 +33,32 @@ void printHex(unsigned int val, int digits)
 	for (int i = (4*digits)-4; i >= 0; i -= 4)
 		*((volatile uint32_t*)OUTPORT) = "0123456789ABCDEF"[(val >> i) % 16];
 }
+
+char getc() {
+	char rxTemp;
+	while (1) {
+		if ((rxTemp = uart_rx) != 0xff) {
+			printChr(rxTemp);
+			return rxTemp;
+		} 
+	}
+}
+
+void getStr(char *p) {
+	char temp;
+	while ((temp=getc()) != '\r') {
+		*(p++) = temp;
+	}
+	printStr("\n\r");
+	*(p++) = '\0';
+}
+
+int atoi(char *p) {
+    int acum = 0;
+    while((*p >= '0') && (*p <= '9')) {
+      acum = acum * 10;
+      acum = acum + (*p - '0');
+      p++;
+    }
+    return (acum);
+}

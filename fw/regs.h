@@ -31,12 +31,13 @@
 #define RTC_ADJNUM     (* (volatile uint32_t *) 0x03000030)
 #define RTC_OFFSET     (* (volatile uint32_t *) 0x03000034)
 // define RTC control values
-#define RTC_SET_CTRL_0 0x00
-#define RTC_GET_TIME   0x01
-#define RTC_SET_ADJ    0x02
-#define RTC_SET_PERIOD 0x04
-#define RTC_SET_TIME   0x08
-#define RTC_SET_RESET  0x10
+#define RTC_SET_CTRL_0 0b00000000
+#define RTC_GET_TIME   0b00000001
+#define RTC_SET_ADJ    0b00000010
+#define RTC_SET_PERIOD 0b00000100
+#define RTC_SET_TIME   0b00001000
+#define RTC_SET_RESET  0b00010000
+#define RTC_SET_OFFSET 0b00100000
 // define RTC data values
 #define RTC_SET_PERIOD_H 0x8     // 8ns for 125MHz rtc_clk
 #define RTC_SET_PERIOD_L 0x0
@@ -79,15 +80,16 @@
 #define PTP_GEN_TSSL (* (volatile uint32_t *) 0x0300010C)
 #define PTP_GEN_TSNS (* (volatile uint32_t *) 0x03000110)
 
-#define TSS_SLICE_LEN  (* (volatile uint32_t *) 0x03000200)
-#define TSS_FRAME_LEN  (* (volatile uint32_t *) 0x03000204)
-#define TSS_BATCH_LEN  (* (volatile uint32_t *) 0x03000208)
-#define TSS_SEQ_LEN    (* (volatile uint32_t *) 0x0300020C)
-#define TSS_BATCH_INTV (* (volatile uint32_t *) 0x03000210)
-#define TSS_NEXT_FRAME (* (volatile uint32_t *) 0x03000214)
-#define TSS_LAST_FRAME (* (volatile uint32_t *) 0x03000218)
-#define TSS_DELTA_TIME (* (volatile uint32_t *) 0x0300021C)
-#define TSS_CTRL       (* (volatile uint32_t *) 0x03000220)
+#define TSS_SLICE_LEN       (* (volatile uint32_t *) 0x03000200)
+#define TSS_FRAME_LEN       (* (volatile uint32_t *) 0x03000204)
+#define TSS_BATCH_LEN       (* (volatile uint32_t *) 0x03000208)
+#define TSS_SEQ_LEN         (* (volatile uint32_t *) 0x0300020C)
+#define TSS_BATCH_INTV      (* (volatile uint32_t *) 0x03000210)
+#define TSS_NEXT_FRAME      (* (volatile uint32_t *) 0x03000214)
+#define TSS_LAST_FRAME      (* (volatile uint32_t *) 0x03000218)
+#define TSS_DELTA_TIME      (* (volatile uint32_t *) 0x0300021C)
+#define TSS_CTRL            (* (volatile uint32_t *) 0x03000220)
+#define TSS_USER_DELTA_TIME (* (volatile uint32_t *) 0x03000224)
 
 
 #define _FREQ_ 125000000		// 50 MHz clock

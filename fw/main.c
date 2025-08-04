@@ -10,11 +10,12 @@
 #include "print.h"
 #include "arith.h"
 #include "ptp_drv.h"
+#include "tss_drv.h"
 
 
 extern void delay_1s();
 
-char greet[] = "\n\r_Cyclone10GX_ x\n\r";
+char greet[] = "\n\r_Cyclone10GX_\n\r";
 
 void menu() {
 	printStr(greet);
@@ -25,8 +26,9 @@ timestamp delay, offset, localTime;
 uint16_t seq_id, sync_seq_id;
 
 ptpMsg message;
+tssParams params;
 
-void handleMsg() {
+void handlePTPMsg() {
 
 	readMsgRx(&message);
 	switch (message.msg_id) {
@@ -78,14 +80,19 @@ int main() {
 				case ' ':
 					menu();
 					break;
-					
+
 				case 'i':
 					ptpInit();
 					break;
 				
-				case 's': // get local time
+				case 't': // get local time
 					getLocalTime(&localTime);
 					printTimestamp(&localTime);
+					break;
+				
+				case 's':
+					getParams(&params);
+					sendCommand(&params);
 					break;
 
 				default:
@@ -94,7 +101,7 @@ int main() {
 			}
 		}
 		if (TSU_RXQUE_STATUS & 0x00FFFFFF > 0) {
-			handleMsg();
+			handlePTPMsg();
 		}
 	}
 	return 0;
