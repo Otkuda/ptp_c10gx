@@ -15,7 +15,7 @@
 ## Features
 
 - Implementation of PTPv2 slave in E2E configuration;
-- Synchronization accuracy up to 900 μs; *(work in progress)*
+- Synchronization accuracy up to 7 μs; *(work in progress)*
 - Calculation of offset and rtt;
 - Direct time adjustment;
 - Precise time adjustment with PI-regulator; *(work in progress)*
